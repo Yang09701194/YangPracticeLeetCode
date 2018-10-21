@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solved\892_SurfaceAreaOf3DShapes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

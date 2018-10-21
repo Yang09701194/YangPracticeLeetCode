@@ -11,28 +11,38 @@ namespace YangPracticeLeetCode.Solved
     /// </summary>
     public class _892_SurfaceAreaOf3DShapes
     {
-        static void Test(string[] args)
+        public static void Test(string[] args = null)
         {
-
             Solution s = new Solution();
-
+            
+            int[][] grid1 = new int[1][];
+            grid1[0] = new[] { 2 };
 
             int[][] grid2 = new int[2][];
-    
             grid2[0] = new[] { 1, 2 };
             grid2[1] = new[] { 3, 4 };
+            
+            int[][] grid3 = new int[2][];
+            grid3[0] = new[] { 1, 0 };
+            grid3[1] = new[] { 0, 2 };
+            
+            int[][] grid4 = new int[3][];
+            grid4[0] = new[] { 1, 1, 1 };
+            grid4[1] = new[] { 1, 0, 1 };
+            grid4[2] = new[] { 1, 1, 1 };
+
+            int[][] grid5 = new int[3][];
+            grid5[0] = new[] { 2, 2, 2 };
+            grid5[1] = new[] { 2, 1, 2 };
+            grid5[2] = new[] { 2, 2, 2 };
 
 
-
-            int[][] grid3 = new int[3][];
-
-            grid3[0] = new[] { 1, 1, 1 };
-            grid3[1] = new[] { 1, 0, 1 };
-            grid3[2] = new[] { 1, 1, 1 };
-
-
-            Console.WriteLine(s.SurfaceArea(grid2));
-            Console.WriteLine(s.SurfaceArea(grid3));
+            
+            Console.WriteLine(s.SurfaceArea(grid1) + " 10");
+            Console.WriteLine(s.SurfaceArea(grid2) + " 34");
+            Console.WriteLine(s.SurfaceArea(grid3) + " 16");
+            Console.WriteLine(s.SurfaceArea(grid4) + " 32");
+            Console.WriteLine(s.SurfaceArea(grid5) + " 46");
             Console.Read();
 
         }
@@ -50,7 +60,8 @@ namespace YangPracticeLeetCode.Solved
                     foreach (var column in row)
                         if (column == 0)
                             counOf0 += 1;
-                int topAndDown = (grid.Count() * grid.Count() - 2 * counOf0) * 2;
+                int topAndDown = (grid.Count() * grid.Count() -  counOf0) 
+                                 * 2;
 
                 //前後左右的表面積
                 int outside = 0;
