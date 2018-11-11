@@ -46,7 +46,9 @@
     <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Solved\892_SurfaceAreaOf3DShapes.cs" />
+    <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
+    <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
+    <Compile Include="Solved\_937_ReorderLogFiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

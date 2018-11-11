@@ -14,7 +14,7 @@ namespace YangPracticeLeetCode.Solved
         public static void Test(string[] args = null)
         {
             Solution s = new Solution();
-            
+
             int[][] grid1 = new int[1][];
             grid1[0] = new[] { 2 };
 
@@ -35,8 +35,6 @@ namespace YangPracticeLeetCode.Solved
             grid5[0] = new[] { 2, 2, 2 };
             grid5[1] = new[] { 2, 1, 2 };
             grid5[2] = new[] { 2, 2, 2 };
-
-
             
             Console.WriteLine(s.SurfaceArea(grid1) + " 10");
             Console.WriteLine(s.SurfaceArea(grid2) + " 34");
@@ -44,7 +42,6 @@ namespace YangPracticeLeetCode.Solved
             Console.WriteLine(s.SurfaceArea(grid4) + " 32");
             Console.WriteLine(s.SurfaceArea(grid5) + " 46");
             Console.Read();
-
         }
 
 
