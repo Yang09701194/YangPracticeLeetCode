@@ -53,6 +53,7 @@
     <Compile Include="Solved\_941_ValidMountainArray.cs" />
     <Compile Include="Solved\_942_DIStringMatch.cs" />
     <Compile Include="Solved\_944_DeleteColumnstoMakeSorted.cs" />
+    <Compile Include="Solved\_949_LargestTimeForGivenDigits.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

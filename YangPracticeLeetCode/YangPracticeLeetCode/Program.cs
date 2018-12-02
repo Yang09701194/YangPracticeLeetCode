@@ -19,9 +19,10 @@ namespace YangPracticeLeetCode
 
             Regex numberReg = new Regex("^[0-9]+");
             
-            _942_DIStringMatch.Test();
+			_949_LargestTimeForGivenDigits.Test();
 
-            //_944_DeleteColumnstoMakeSorted.Test();
+            //_942_DIStringMatch.Test();
+			//_944_DeleteColumnstoMakeSorted.Test();
             //_941_ValidMountainArray.Test();
             //_892_SurfaceAreaOf3DShapes.Test();
             //_917_IeverseOnlyLetters.Test();
