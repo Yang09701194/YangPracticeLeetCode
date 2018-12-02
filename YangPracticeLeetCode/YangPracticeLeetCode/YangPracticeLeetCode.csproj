@@ -54,6 +54,7 @@
     <Compile Include="Solved\_942_DIStringMatch.cs" />
     <Compile Include="Solved\_944_DeleteColumnstoMakeSorted.cs" />
     <Compile Include="Solved\_949_LargestTimeForGivenDigits.cs" />
+    <Compile Include="Solved\_951_FlipEquivalentBinaryTrees.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
