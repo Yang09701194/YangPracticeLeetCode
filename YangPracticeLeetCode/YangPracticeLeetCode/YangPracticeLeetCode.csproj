@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\Sort_SelectionSort.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
@@ -55,9 +56,20 @@
     <Compile Include="Solved\_944_DeleteColumnstoMakeSorted.cs" />
     <Compile Include="Solved\_949_LargestTimeForGivenDigits.cs" />
     <Compile Include="Solved\_951_FlipEquivalentBinaryTrees.cs" />
+    <Compile Include="Solved\_953_VerifyingAnAlienDictionary.cs" />
+    <Compile Include="Solved\_961_N_RepeatedElementInSize2NArray.cs" />
+    <Compile Include="Solved\_962_MaximumWidthRamp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\_962_01.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\_962_02.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

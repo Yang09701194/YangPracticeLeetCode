@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using YangPracticeLeetCode.Algorithm;
 using YangPracticeLeetCode.Solved;
 
 namespace YangPracticeLeetCode
@@ -15,23 +16,23 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-            string[] s = new[] {"123", "t34", "as", "145"};
 
-            Regex numberReg = new Regex("^[0-9]+");
-            
-			_951_FlipEquivalentBinaryTrees.Test();
 
+	        _962_MaximumWidthRamp.Test();
+
+			//_961_N_RepeatedElementInSize2NArray.Test();
+			//Sort_SelectionSort.Test();
+			//_953_VerifyingAnAlienDictionary.Test();
+			//_951_FlipEquivalentBinaryTrees.Test();
 			//_949_LargestTimeForGivenDigits.Test();
 			//_942_DIStringMatch.Test();
 			//_944_DeleteColumnstoMakeSorted.Test();
-            //_941_ValidMountainArray.Test();
-            //_892_SurfaceAreaOf3DShapes.Test();
-            //_917_IeverseOnlyLetters.Test();
-            //_937_ReorderLogFiles.Test();
+			//_941_ValidMountainArray.Test();
+			//_892_SurfaceAreaOf3DShapes.Test();
+			//_917_IeverseOnlyLetters.Test();
+			//_937_ReorderLogFiles.Test();
 
-
-            Console.Read(); 
-
+			Console.Read();
         }
 
         
