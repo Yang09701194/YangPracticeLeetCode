@@ -59,6 +59,7 @@
     <Compile Include="Solved\_953_VerifyingAnAlienDictionary.cs" />
     <Compile Include="Solved\_961_N_RepeatedElementInSize2NArray.cs" />
     <Compile Include="Solved\_962_MaximumWidthRamp.cs" />
+    <Compile Include="Solved\_984_StringWithoutAAAorBBB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

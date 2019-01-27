@@ -16,10 +16,11 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
+			_984_StringWithoutAAAorBBB.Test();
 
 
-	        _962_MaximumWidthRamp.Test();
 
+	        //_962_MaximumWidthRamp.Test();
 			//_961_N_RepeatedElementInSize2NArray.Test();
 			//Sort_SelectionSort.Test();
 			//_953_VerifyingAnAlienDictionary.Test();
@@ -35,12 +36,6 @@ namespace YangPracticeLeetCode
 			Console.Read();
         }
 
-        
-        public class Solution
-        {
-
-
-
-        }
+       
     }
 }
