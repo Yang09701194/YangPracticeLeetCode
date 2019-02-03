@@ -47,7 +47,6 @@ namespace YangPracticeLeetCode.Solved
 		{
 			string output = "";
 
-
 			string largerLetter = A > B ? "a" : "b";
 			string smallerLetter = largerLetter == "b" ? "a" : "b";
 			int larger = Math.Max(A, B);

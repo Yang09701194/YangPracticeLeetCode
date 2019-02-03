@@ -60,6 +60,7 @@
     <Compile Include="Solved\_961_N_RepeatedElementInSize2NArray.cs" />
     <Compile Include="Solved\_962_MaximumWidthRamp.cs" />
     <Compile Include="Solved\_984_StringWithoutAAAorBBB.cs" />
+    <Compile Include="Solved\_985_SumOfEvenNumbersAfterQueries.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
