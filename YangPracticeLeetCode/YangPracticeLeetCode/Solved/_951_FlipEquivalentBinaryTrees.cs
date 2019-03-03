@@ -51,7 +51,7 @@ namespace YangPracticeLeetCode.Solved
 		}
 
 
-		public class Solution
+		public class Solution	
 		{
 			public bool FlipEquiv(TreeNode root1, TreeNode root2)
 			{
@@ -70,7 +70,7 @@ namespace YangPracticeLeetCode.Solved
 			public bool TraverseLeftRightUnorderEqual(TreeNode root1Node, TreeNode root2)
 			{
 				if (root1Node == null ) return true;
-				TreeNode root2NodeFind = TraverseFind(root1Node.val, root2);
+				TreeNode root2NodeFind = RecursiveFind(root1Node.val, root2);
 				if (root2NodeFind == null)
 					return false;
 				if (!LeftRightUnorderEqual(root2NodeFind, root1Node))
@@ -112,14 +112,14 @@ namespace YangPracticeLeetCode.Solved
 				return false;
 			}
 			
-			public TreeNode TraverseFind(int val, TreeNode node)
+			public TreeNode RecursiveFind(int val, TreeNode node)
 			{
 				if (node == null)
 					return null;
 				if (node.val == val)
 					return node;
-				TreeNode findL = TraverseFind(val, node.left);
-				TreeNode findR = TraverseFind(val, node.right);
+				TreeNode findL = RecursiveFind(val, node.left);
+				TreeNode findR = RecursiveFind(val, node.right);
 				if (findL != null)
 					return findL;
 				if (findR != null)

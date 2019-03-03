@@ -15,8 +15,18 @@ namespace YangPracticeLeetCode
     {
         static void Main(string[] args)
         {
+			
+			
+			_1003_CheckIfWordIsValidAfterSubstitutions.Test();
 
-			_985_SumOfEvenNumbersAfterQueries.Test();
+	        //_1002_FindCommonCharacters.Test();
+
+			//_993_CousinsInBinaryTree.Test();
+
+			// todo uncomplete
+	        //_989_AddToArrayFormOfInteger.Test();
+
+			//_985_SumOfEvenNumbersAfterQueries.Test();
 			//_984_StringWithoutAAAorBBB.Test();
 			//_962_MaximumWidthRamp.Test();
 			//_961_N_RepeatedElementInSize2NArray.Test();

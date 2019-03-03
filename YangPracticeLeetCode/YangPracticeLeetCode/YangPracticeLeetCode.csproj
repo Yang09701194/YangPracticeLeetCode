@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,8 @@
     <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solved\_1002_FindCommonCharacters.cs" />
+    <Compile Include="Solved\_1003_CheckIfWordIsValidAfterSubstitutions.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
@@ -61,6 +64,8 @@
     <Compile Include="Solved\_962_MaximumWidthRamp.cs" />
     <Compile Include="Solved\_984_StringWithoutAAAorBBB.cs" />
     <Compile Include="Solved\_985_SumOfEvenNumbersAfterQueries.cs" />
+    <Compile Include="Solved\_989_AddToArrayFormOfInteger.cs" />
+    <Compile Include="Solved\_993_CousinsInBinaryTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
