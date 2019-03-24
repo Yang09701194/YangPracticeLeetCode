@@ -51,6 +51,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solved\_1002_FindCommonCharacters.cs" />
     <Compile Include="Solved\_1003_CheckIfWordIsValidAfterSubstitutions.cs" />
+    <Compile Include="Solved\_1020_PartitionArrayIntoThreePartsWithEqualSum.cs" />
+    <Compile Include="Solved\_1023_BinaryStringWithSubstringsRepresenting1ToN.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
