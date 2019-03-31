@@ -15,9 +15,11 @@ namespace YangPracticeLeetCode
     {
         static void Main(string[] args)
         {
-			
 
-            _1023_BinaryStringWithSubstringsRepresenting1ToN.Test();
+
+	        _1029_BinaryPrefixDivisibleBy5.Test();
+
+			//_1023_BinaryStringWithSubstringsRepresenting1ToN.Test();
             
             //_1020_PartitionArrayIntoThreePartsWithEqualSum.Test();
 			

@@ -15,7 +15,6 @@ namespace YangPracticeLeetCode.Solved
 
             Console.WriteLine(s.QueryString("0110", 3));
             Console.WriteLine(s.QueryString("0110", 4));
-
         }
 
         public class Solution
