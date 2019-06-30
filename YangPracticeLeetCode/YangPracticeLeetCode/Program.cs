@@ -16,8 +16,12 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
+			_1104_PathInZigzagLabelledBinaryTree.Test();
+			
+	        
+	        //_1103_DistributeCandiestoPeople.Test();
 
-	        _1029_BinaryPrefixDivisibleBy5.Test();
+	        //_1029_BinaryPrefixDivisibleBy5.Test();
 
 			//_1023_BinaryStringWithSubstringsRepresenting1ToN.Test();
             

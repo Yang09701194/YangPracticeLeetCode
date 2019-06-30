@@ -54,6 +54,8 @@
     <Compile Include="Solved\_1020_PartitionArrayIntoThreePartsWithEqualSum.cs" />
     <Compile Include="Solved\_1023_BinaryStringWithSubstringsRepresenting1ToN.cs" />
     <Compile Include="Solved\_1029_BinaryPrefixDivisibleBy5.cs" />
+    <Compile Include="Solved\_1104_PathInZigzagLabelledBinaryTree.cs" />
+    <Compile Include="Solved\_1103_DistributeCandiestoPeople.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
