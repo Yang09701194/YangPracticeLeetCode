@@ -58,6 +58,7 @@ namespace YangPracticeLeetCode.Solved
 					int add = (int) Math.Pow(2, powerOf2 - 2) - 1 - upLevelPosDiff;
 
 					//zizgzag  在同一列倒過來  位置反射
+					//跟下面方法只差在這行
 					add = (int) Math.Pow(2, powerOf2 - 2) - 1 - add;
 
 					int upLevelPoint = (int) Math.Pow(2, powerOf2 - 2) + add;
