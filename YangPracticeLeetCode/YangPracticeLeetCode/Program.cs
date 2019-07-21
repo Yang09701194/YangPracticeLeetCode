@@ -16,28 +16,30 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-			_1122_RelativeSortArray.Test();
+	        _1128__NumberofEquivalentDominoPairs.Test();
+
+			//_1122_RelativeSortArray.Test();
 
 			//_1109_CorporateFlightBookings.Test();
 
 			//_1104_PathInZigzagLabelledBinaryTree.Test();
-			
-	        //_1103_DistributeCandiestoPeople.Test();
 
-	        //_1029_BinaryPrefixDivisibleBy5.Test();
+			//_1103_DistributeCandiestoPeople.Test();
+
+			//_1029_BinaryPrefixDivisibleBy5.Test();
 
 			//_1023_BinaryStringWithSubstringsRepresenting1ToN.Test();
-            
-            //_1020_PartitionArrayIntoThreePartsWithEqualSum.Test();
-			
+
+			//_1020_PartitionArrayIntoThreePartsWithEqualSum.Test();
+
 			//_1003_CheckIfWordIsValidAfterSubstitutions.Test();
 
-	        //_1002_FindCommonCharacters.Test();
+			//_1002_FindCommonCharacters.Test();
 
 			//_993_CousinsInBinaryTree.Test();
 
 			// todo uncomplete
-	        //_989_AddToArrayFormOfInteger.Test();
+			//_989_AddToArrayFormOfInteger.Test();
 
 			//_985_SumOfEvenNumbersAfterQueries.Test();
 			//_984_StringWithoutAAAorBBB.Test();
