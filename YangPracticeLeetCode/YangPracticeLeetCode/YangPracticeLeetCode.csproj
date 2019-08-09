@@ -61,6 +61,9 @@
     <Compile Include="Solved\_1109_CorporateFlightBookings.cs" />
     <Compile Include="Solved\_1122_RelativeSortArray.cs" />
     <Compile Include="Solved\_1128_ NumberofEquivalentDominoPairs.cs" />
+    <Compile Include="Solved\_1137_NthTribonacciNumber.cs" />
+    <Compile Include="Solved\_1138_AlphabetBoardPath.cs" />
+    <Compile Include="Solved\_1139_Largest1BorderedSquare.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />

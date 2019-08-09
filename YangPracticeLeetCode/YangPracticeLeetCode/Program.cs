@@ -16,7 +16,13 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-	        _1128__NumberofEquivalentDominoPairs.Test();
+			_1139_Largest1BorderedSquare.Test();
+
+			//_1138_AlphabetBoardPath.Test();
+
+			//_1137_NthTribonacciNumber.Test();
+
+	        //_1128__NumberofEquivalentDominoPairs.Test();
 
 			//_1122_RelativeSortArray.Test();
 
