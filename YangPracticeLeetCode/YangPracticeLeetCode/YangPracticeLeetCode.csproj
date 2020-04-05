@@ -64,6 +64,9 @@
     <Compile Include="Solved\_1137_NthTribonacciNumber.cs" />
     <Compile Include="Solved\_1138_AlphabetBoardPath.cs" />
     <Compile Include="Solved\_1139_Largest1BorderedSquare.cs" />
+    <Compile Include="Solved\_5195_LongestHappyString.cs" />
+    <Compile Include="Solved\_5376_MinimumSubsequenceInNonIncreasingOrder.cs" />
+    <Compile Include="Solved\_5377_NumberofStepstoReduceaNumberinBinaryRepresentationtoOne.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
