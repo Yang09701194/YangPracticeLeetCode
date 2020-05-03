@@ -15,7 +15,10 @@ namespace YangPracticeLeetCode
     {
         static void Main(string[] args)
         {
-			_5195_LongestHappyString.Test();
+			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+
+			//_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.Test();
+			//_5195_LongestHappyString.Test();
 
 			//_5377_NumberofStepstoReduceaNumberinBinaryRepresentationtoOne.Test();
 
