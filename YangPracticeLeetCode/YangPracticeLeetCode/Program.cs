@@ -15,7 +15,18 @@ namespace YangPracticeLeetCode
     {
         static void Main(string[] args)
         {
-			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+
+			_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
+
+			//_5464_WaterBottles.Test();
+
+			//_5414_PeopleWhoseListofFavoriteCompaniesIsNotaSubsetofAnotherList.Test();
+
+			//_5413_RearrangeWordsinaSentence.Test();
+
+			//  WAIT  _5405_CountTripletsThatCanFormTwoArraysofEqualXOR.Test();	
+
+	        //_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
 
 			//_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.Test();
 			//_5195_LongestHappyString.Test();
@@ -70,6 +81,7 @@ namespace YangPracticeLeetCode
 			//_917_IeverseOnlyLetters.Test();
 			//_937_ReorderLogFiles.Test();
 
+			Console.WriteLine("ok");
 			Console.Read();
         }
 

@@ -30,7 +30,7 @@ namespace YangPracticeLeetCode.Solved
 		{
 			public int LongestSubarray(int[] nums, int limit)
 			{
-				if (limit == 0)//這段去掉也可以過
+				if (limit == 0)//這段去掉也可以過  //0  檢查連續相同數列
 				{
 					int currr = -1;
 					int currLength = 0;
@@ -54,9 +54,9 @@ namespace YangPracticeLeetCode.Solved
 
 				}
 
-				int first = nums[0];
+				int first = nums[0];//這段要加才不會timeout
 				bool isAllSame = true;
-				foreach (int num in nums)
+				foreach (int num in nums)//全部相同直接回傳參數長度  
 				{
 					if (num != first)
 					{

@@ -70,6 +70,13 @@
     <Compile Include="Solved\_5400_DestinationCity.cs" />
     <Compile Include="Solved\_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.cs" />
     <Compile Include="Solved\_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.cs" />
+    <Compile Include="Solved\_5405_CountTripletsThatCanFormTwoArraysofEqualXOR.cs" />
+    <Compile Include="Solved\_5412_NumberofStudentsDoingHomeworkataGivenTime.cs" />
+    <Compile Include="Solved\_5413_RearrangeWordsinaSentence.cs" />
+    <Compile Include="Solved\_5414_PeopleWhoseListofFavoriteCompaniesIsNotaSubsetofAnotherList.cs" />
+    <Compile Include="Solved\_5415_MaximumNumberofDartsInsideofaCircularDartboard.cs" />
+    <Compile Include="Solved\_5464_WaterBottles.cs" />
+    <Compile Include="Solved\_5465_NumberofNodesintheSubTreeWiththeSameLabel.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
@@ -98,6 +105,9 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64\editbin.exe" /stack:209715200 "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
