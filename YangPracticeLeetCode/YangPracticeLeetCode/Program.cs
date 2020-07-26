@@ -16,7 +16,13 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-			_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
+			_5474_NumberofGoodLeafNodesPairs.Test();
+
+			//_5473_BulbSwitcherIV.Test();
+			
+			//_5472_ShuffleString.Test();
+
+	        //_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
 
 			//_5464_WaterBottles.Test();
 

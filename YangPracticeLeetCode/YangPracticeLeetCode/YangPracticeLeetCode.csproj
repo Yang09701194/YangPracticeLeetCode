@@ -77,6 +77,9 @@
     <Compile Include="Solved\_5415_MaximumNumberofDartsInsideofaCircularDartboard.cs" />
     <Compile Include="Solved\_5464_WaterBottles.cs" />
     <Compile Include="Solved\_5465_NumberofNodesintheSubTreeWiththeSameLabel.cs" />
+    <Compile Include="Solved\_5472_ShuffleString.cs" />
+    <Compile Include="Solved\_5473_BulbSwitcherIV.cs" />
+    <Compile Include="Solved\_5474_NumberofGoodLeafNodesPairs.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
