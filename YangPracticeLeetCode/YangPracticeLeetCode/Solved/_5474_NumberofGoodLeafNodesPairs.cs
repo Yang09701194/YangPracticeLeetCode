@@ -13,7 +13,7 @@ namespace YangPracticeLeetCode.Solved
 		public static void Test()
 		{
 			Solution s = new Solution();
-			Solution.Go();
+
 			//Console.WriteLine(s.NumPoints());
 
 
@@ -21,90 +21,162 @@ namespace YangPracticeLeetCode.Solved
 
 
 
+
+
+
+
+		//Definition for a binary tree node.
+		public class TreeNode
+		{
+			public int val;
+			public TreeNode left;
+			public TreeNode right;
+			public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+			{
+				this.val = val;
+				this.left = left;
+				this.right = right;
+			}
+		}
+
+
+
+
 		public class Solution
 		{
-			//public int CountPairs(TreeNode root, int distance)
-			//{
 
 
+			public List<int> isLeafsIndexes = new List<int>();
+			public List<int> isLeafsDistances = new List<int>();
 
-			//}
-
-			static int[,] graph = new int[6, 6] { { 10000, 10000, 10, 10000, 30, 100 }, { 10000, 10000, 5, 10000, 10000, 10000 }, { 10000, 10000, 10000, 50, 10000, 10000 }, { 10000, 10000, 10000, 10000, 10000, 10 }, { 10000, 10000, 10000, 20, 10000, 60 }, { 10000, 10000, 10000, 10000, 10000, 10000 } };
-			static int[] S = new int[6] { 0, 0, 0, 0, 0, 0 };//最短路徑的頂點集合
-			static string[] mid = new string[6] { "", "", "", "", "", "" };//點的路線
-			public static int IsContain(int m)//判斷元素是否在mst中
+			public class Edge
 			{
-				int index = -1;
-				for (int i = 1; i < 6; i++)
+				public Edge(int start, int end)
 				{
-					if (S[i] == m)
-					{
-						index = i;
-					}
-				}
-				return index;
-			}
-			/// <summary>
-			/// Dijkstrah實現最短路演算法
-			/// </summary>
-			static void ShortestPathByDijkstra()
-			{
-				int min;
-				int next;
-
-				for (int f = 5; f > 0; f--)
-				{
-					//置為初始值
-
-					min = 1000;
-					next = 0;//第一行最小的元素所在的列 next點
-							 //找出第一行最小的列值
-					for (int j = 1; j < 6; j++)//迴圈第0行的列
-					{
-						if ((IsContain(j) == -1) && (graph[0, j] < min))//不在S中,找出第一行最小的元素所在的列
-						{
-							min = graph[0, j];
-							next = j;
-						}
-					}
-					//將下一個點加入S
-					S[next] = next;
-					//輸出最短距離和路徑
-					if (min == 1000)
-					{
-						Console.WriteLine("V0到V{0}的最短路徑為：無", next);
-					}
-					else
-					{
-						Console.WriteLine("V0到V{0}的最短路徑為：{1},路徑為：V0{2}->V{0}", next, min, mid[next]);
-					}
-					// 重新初始0行所有列值
-					for (int j = 1; j < 6; j++)//迴圈第0行的列
-					{
-						if (IsContain(j) == -1)//初始化除包含在S中的
-						{
-							if ((graph[next, j] + min) < graph[0, j])//如果小於原來的值就替換
-							{
-								graph[0, j] = graph[next, j] + min;
-								mid[j] = mid[next] + "->V" + next;//記錄過程點
-							}
-						}
-					}
-
+					this.start = start;
+					this.end = end;
 				}
 
+				public int start;
+				public int end;
 			}
 
-
-			public static void Go()
+			public int CountPairs(TreeNode root, int distance)
 			{
-				ShortestPathByDijkstra();
 
+				//	建立邊的連接資訊
+				List<Edge> edges = new List<Edge>();
+				List<int> nodes = new List<int>();
+				root.val = 1;
+				AddEdgeInfo(root, edges, nodes);
+
+				//  adjacency matrix
+				int[,] adjMtx = new int[nodes.Count, nodes.Count];
+				foreach (Edge edge in edges)
+				{
+					adjMtx[edge.start - 1, edge.end - 1] = 1;
+					adjMtx[edge.end - 1, edge.start - 1] = 1;
+				}
+
+
+
+				for (int i = 0; i < isLeafsIndexes.Count; i++)
+				{
+					DijkstraAlgo(adjMtx, isLeafsIndexes[i], nodes.Count);
+				}
+				return isLeafsDistances.Where(d => d <= distance).Count() / 2;
 			}
+
+			int n = 1;
+			private void AddEdgeInfo(TreeNode node, List<Edge> edges, List<int> nodes)
+			{
+				if (node != null)
+				{
+					nodes.Add(node.val);
+					if(node.left == null && node.right == null)
+						isLeafsIndexes.Add(nodes.Count - 1);
+
+					if (node.left != null)
+					{
+						node.left.val = ++n;
+						edges.Add(new Edge(node.val, node.left.val));
+						AddEdgeInfo(node.left, edges, nodes);
+					}
+					if (node.right != null)
+					{
+						node.right.val = ++n;
+						edges.Add(new Edge(node.val, node.right.val));
+						AddEdgeInfo(node.right, edges, nodes);
+					}
+				}
+			}
+
+
+
+			public void DijkstraAlgo(int[,] graph, int source, int verticesCount)
+			{
+				int[] distance = new int[verticesCount];
+				bool[] shortestPathTreeSet = new bool[verticesCount];
+
+				for (int i = 0; i < verticesCount; ++i)
+				{
+					distance[i] = int.MaxValue;
+					shortestPathTreeSet[i] = false;
+				}
+
+				distance[source] = 0;
+
+				for (int count = 0; count < verticesCount - 1; ++count)
+				{
+					int u = MinimumDistance(distance, shortestPathTreeSet, verticesCount);
+					shortestPathTreeSet[u] = true;
+
+					for (int v = 0; v < verticesCount; ++v)
+						if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
+							distance[v] = distance[u] + graph[u, v];
+				}
+
+				Print(distance, verticesCount);
+			}
+			private  int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)
+			{
+				int min = int.MaxValue;
+				int minIndex = 0;
+
+				for (int v = 0; v < verticesCount; ++v)
+				{
+					if (shortestPathTreeSet[v] == false && distance[v] <= min)
+					{
+						min = distance[v];
+						minIndex = v;
+					}
+				}
+
+
+
+				return minIndex;
+			}
+			private void Print(int[] distance, int verticesCount)
+			{
+				//Console.WriteLine("Vertex    Distance from source");
+
+				for (int i = 0; i < verticesCount; ++i)
+				{
+					//Console.WriteLine("{0}\t  {1}", i, distance[i]);
+
+					if (distance[i] != 0 && isLeafsIndexes.Contains(i))
+					{
+						isLeafsDistances.Add(distance[i]);
+					}
+				}
+			}
+
 
 		}
 
 
+
 	}
+
+
 }
