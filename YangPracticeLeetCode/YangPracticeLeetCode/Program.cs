@@ -16,7 +16,11 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-			_5474_NumberofGoodLeafNodesPairs.Test();
+			_5475_CountGoodTriplets.Test();
+
+			//_5476_FindtheWinnerofanArrayGame.Test();
+
+			//_5474_NumberofGoodLeafNodesPairs.Test();
 
 			//_5473_BulbSwitcherIV.Test();
 			
