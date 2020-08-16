@@ -16,7 +16,11 @@ namespace YangPracticeLeetCode
         static void Main(string[] args)
         {
 
-			_5475_CountGoodTriplets.Test();
+			_5489_MagneticForceBetweenTwoBalls.Test();
+
+			//_5185_ThreeConsecutiveOdds.Test();
+
+			//_5475_CountGoodTriplets.Test();
 
 			//_5476_FindtheWinnerofanArrayGame.Test();
 

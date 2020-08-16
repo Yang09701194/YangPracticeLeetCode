@@ -64,6 +64,7 @@
     <Compile Include="Solved\_1137_NthTribonacciNumber.cs" />
     <Compile Include="Solved\_1138_AlphabetBoardPath.cs" />
     <Compile Include="Solved\_1139_Largest1BorderedSquare.cs" />
+    <Compile Include="Solved\_5185_ThreeConsecutiveOdds.cs" />
     <Compile Include="Solved\_5195_LongestHappyString.cs" />
     <Compile Include="Solved\_5376_MinimumSubsequenceInNonIncreasingOrder.cs" />
     <Compile Include="Solved\_5377_NumberofStepstoReduceaNumberinBinaryRepresentationtoOne.cs" />
@@ -82,6 +83,8 @@
     <Compile Include="Solved\_5474_NumberofGoodLeafNodesPairs.cs" />
     <Compile Include="Solved\_5475_CountGoodTriplets.cs" />
     <Compile Include="Solved\_5476_FindtheWinnerofanArrayGame.cs" />
+    <Compile Include="Solved\_5488_MinimumOperationstoMakeArrayEqual.cs" />
+    <Compile Include="Solved\_5489_MagneticForceBetweenTwoBalls.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
