@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +86,8 @@
     <Compile Include="Solved\_5476_FindtheWinnerofanArrayGame.cs" />
     <Compile Include="Solved\_5488_MinimumOperationstoMakeArrayEqual.cs" />
     <Compile Include="Solved\_5489_MagneticForceBetweenTwoBalls.cs" />
+    <Compile Include="Solved\_5531_SpecialArrayWithXElementsGreaterThanorEqualX.cs" />
+    <Compile Include="Solved\_5532_EvenOddTree.cs" />
     <Compile Include="Solved\_892_SurfaceAreaOf3DShapes.cs" />
     <Compile Include="Solved\_917_IeverseOnlyLetters.cs" />
     <Compile Include="Solved\_937_ReorderLogFiles.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="Solved\_985_SumOfEvenNumbersAfterQueries.cs" />
     <Compile Include="Solved\_989_AddToArrayFormOfInteger.cs" />
     <Compile Include="Solved\_993_CousinsInBinaryTree.cs" />
+    <Compile Include="Solved\_454_4SumII.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

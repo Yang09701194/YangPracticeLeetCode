@@ -13,10 +13,16 @@ namespace YangPracticeLeetCode
 {
     class Program
     {
-        static void Main(string[] args)
+	    [STAThread]
+		static void Main(string[] args)
         {
+			CommonHelper.FormatProblemName();
 
-			_5489_MagneticForceBetweenTwoBalls.Test();
+			//_454_4SumII.Test();
+
+			//_5531_SpecialArrayWithXElementsGreaterThanorEqualX.Test();
+
+			//_5489_MagneticForceBetweenTwoBalls.Test();
 
 			//_5185_ThreeConsecutiveOdds.Test();
 
