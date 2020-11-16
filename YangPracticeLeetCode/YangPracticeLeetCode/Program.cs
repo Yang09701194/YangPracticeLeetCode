@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using YangPracticeLeetCode.Algorithm;
+using YangPracticeLeetCode.Helper;
 using YangPracticeLeetCode.Solved;
 
 namespace YangPracticeLeetCode
@@ -15,8 +16,22 @@ namespace YangPracticeLeetCode
     {
 	    [STAThread]
 		static void Main(string[] args)
-        {
-			CommonHelper.FormatProblemName();
+		{
+			var now = DateTime.Now;
+			//CommonHelper.FormatProblemName();
+			//ProblemRecord.List();
+
+			_824_GoatLatin.Test();
+
+			//_387_FirstUniqueCharacterinaString.Test();
+
+			//_1616_SplitTwoStringstoMakePalindrome.Test();
+
+			//_5536_MaximalNetworkRank.Test();
+
+			//_5535_MaximumNestingDepthoftheParentheses.Test();
+
+			//_395_LongestSubstringwithAtLeastKRepeatingCharacters.Test();
 
 			//_454_4SumII.Test();
 
@@ -101,6 +116,8 @@ namespace YangPracticeLeetCode
 			//_917_IeverseOnlyLetters.Test();
 			//_937_ReorderLogFiles.Test();
 
+
+			Console.WriteLine(DateTime.Now.Subtract(now).TotalMilliseconds);
 			Console.WriteLine("ok");
 			Console.Read();
         }

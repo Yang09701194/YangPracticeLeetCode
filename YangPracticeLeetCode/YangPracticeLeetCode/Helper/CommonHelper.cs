@@ -34,7 +34,7 @@ namespace YangPracticeLeetCode.Solved
 
 			X.AddNameSpacePreAndValue(ref Nspace, ref n);
 
-			string filename = "_454_4SumII";
+			string filename = title;
 			XNamespace nameSpace = "http://schemas.microsoft.com/developer/msbuild/2003";
 			var ele2 = new XElement(nameSpace + "Compile", new XAttribute("Include", $"Solved\\{filename}.cs")); // strange but true
 

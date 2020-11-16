@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Algorithm\Sort_SelectionSort.cs" />
     <Compile Include="Helper\CommonHelper.cs" />
+    <Compile Include="Helper\ProblemRecord.cs" />
     <Compile Include="Helper\TimerY.cs" />
     <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
@@ -104,6 +105,15 @@
     <Compile Include="Solved\_989_AddToArrayFormOfInteger.cs" />
     <Compile Include="Solved\_993_CousinsInBinaryTree.cs" />
     <Compile Include="Solved\_454_4SumII.cs" />
+    <Compile Include="Solved\_412_FizzBuzz.cs" />
+    <Compile Include="Solved\_1195_FizzBuzzMultithreaded.cs" />
+    <Compile Include="Solved\_395_LongestSubstringwithAtLeastKRepeatingCharacters.cs" />
+    <Compile Include="Solved\_5535_MaximumNestingDepthoftheParentheses.cs" />
+    <Compile Include="Solved\_5536_MaximalNetworkRank.cs" />
+    <Compile Include="Solved\_1616_SplitTwoStringstoMakePalindrome.cs" />
+    <Compile Include="Solved\_387_FirstUniqueCharacterinaString.cs" />
+    <Compile Include="Solved\_384_ShuffleanArray.cs" />
+    <Compile Include="Solved\_824_GoatLatin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
