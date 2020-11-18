@@ -114,6 +114,8 @@
     <Compile Include="Solved\_387_FirstUniqueCharacterinaString.cs" />
     <Compile Include="Solved\_384_ShuffleanArray.cs" />
     <Compile Include="Solved\_824_GoatLatin.cs" />
+    <Compile Include="Solved\_937_ReorderDatainLogFiles.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

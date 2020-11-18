@@ -26,7 +26,7 @@ namespace YangPracticeLeetCode.Solved
 		{
 			public string ToGoatLatin(string S)
 			{
-				char[] vowels = new[] { 'a', 'e', 'i', 'o', 'u' };
+				char[] vowels = new[] { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', };
 				string[] strs = S.Split(' ');
 				string _a = "a";
 				for (int i = 0; i < strs.Length; i++)

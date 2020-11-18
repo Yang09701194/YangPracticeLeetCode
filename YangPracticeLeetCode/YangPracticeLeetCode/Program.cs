@@ -21,9 +21,12 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_824_GoatLatin.Test();
+			_937_ReorderLogFiles.Test();
 
-			//_387_FirstUniqueCharacterinaString.Test();
+
+			//_824_GoatLatin.Test();
+
+			//_387_FirstUnique	CharacterinaString.Test();
 
 			//_1616_SplitTwoStringstoMakePalindrome.Test();
 
