@@ -21,7 +21,9 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_937_ReorderLogFiles.Test();
+			_1018_BinaryPrefixDivisibleBy5.Test();
+
+			//_937_ReorderLogFiles.Test();
 
 
 			//_824_GoatLatin.Test();
