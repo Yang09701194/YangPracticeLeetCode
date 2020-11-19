@@ -115,6 +115,7 @@
     <Compile Include="Solved\_384_ShuffleanArray.cs" />
     <Compile Include="Solved\_824_GoatLatin.cs" />
     <Compile Include="Solved\_1018_BinaryPrefixDivisibleBy5.cs" />
+    <Compile Include="Solved\_1016_BinaryStringWithSubstringsRepresenting1ToN.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

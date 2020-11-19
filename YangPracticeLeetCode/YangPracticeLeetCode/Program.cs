@@ -12,16 +12,18 @@ using YangPracticeLeetCode.Solved;
 
 namespace YangPracticeLeetCode
 {
-    class Program
-    {
-	    [STAThread]
+	class Program
+	{
+		[STAThread]
 		static void Main(string[] args)
 		{
 			var now = DateTime.Now;
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_1018_BinaryPrefixDivisibleBy5.Test();
+			_1016_BinaryStringWithSubstringsRepresenting1ToN.Test();
+
+			//_1018_BinaryPrefixDivisibleBy5.Test();
 
 			//_937_ReorderLogFiles.Test();
 
@@ -53,10 +55,10 @@ namespace YangPracticeLeetCode
 			//_5474_NumberofGoodLeafNodesPairs.Test();
 
 			//_5473_BulbSwitcherIV.Test();
-			
+
 			//_5472_ShuffleString.Test();
 
-	        //_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
+			//_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
 
 			//_5464_WaterBottles.Test();
 
@@ -66,14 +68,14 @@ namespace YangPracticeLeetCode
 
 			//  WAIT  _5405_CountTripletsThatCanFormTwoArraysofEqualXOR.Test();	
 
-	        //_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+			//_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
 
 			//_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.Test();
 			//_5195_LongestHappyString.Test();
 
 			//_5377_NumberofStepstoReduceaNumberinBinaryRepresentationtoOne.Test();
 
-	        //_5376_MinimumSubsequenceInNonIncreasingOrder.Test();
+			//_5376_MinimumSubsequenceInNonIncreasingOrder.Test();
 
 			//_1139_Largest1BorderedSquare.Test();
 
@@ -125,8 +127,8 @@ namespace YangPracticeLeetCode
 			Console.WriteLine(DateTime.Now.Subtract(now).TotalMilliseconds);
 			Console.WriteLine("ok");
 			Console.Read();
-        }
+		}
 
-       
-    }
+
+	}
 }

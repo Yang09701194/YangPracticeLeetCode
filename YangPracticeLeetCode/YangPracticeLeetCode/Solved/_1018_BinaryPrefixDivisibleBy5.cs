@@ -17,7 +17,7 @@ namespace YangPracticeLeetCode.Solved
 
 			s.PrefixesDivBy5(new int[] { 0, 1, 1, 1, 1, 1 }).PrintList();
 			s.PrefixesDivBy5(new int[] {  1, 1, 1}).PrintList();
-
+	
 		}
 
 

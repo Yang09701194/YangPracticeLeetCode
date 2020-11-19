@@ -18,6 +18,10 @@ namespace YangPracticeLeetCode.Solved
 
 	    public static void FormatProblemName()
 	    {
+		    Console.WriteLine("create problem?");
+		    Console.Read(); 
+
+
 			string t = Clipboard.GetText();
 			//1604. Alert Using Same Key-Card Three or More Times in a One Hour Period
 
