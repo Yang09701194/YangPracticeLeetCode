@@ -21,7 +21,11 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_1016_BinaryStringWithSubstringsRepresenting1ToN.Test();
+			_5614_FindtheMostCompetitiveSubsequence.Test();
+
+			//_5613_RichestCustomerWealth.Test();
+
+			//_1016_BinaryStringWithSubstringsRepresenting1ToN.Test();
 
 			//_1018_BinaryPrefixDivisibleBy5.Test();
 

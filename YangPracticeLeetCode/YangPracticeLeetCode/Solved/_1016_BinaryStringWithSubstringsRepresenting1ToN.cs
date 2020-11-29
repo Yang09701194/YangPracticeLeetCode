@@ -38,7 +38,7 @@ namespace YangPracticeLeetCode.Solved
 			public bool QueryString(string S, int N)
 			{
 				
-				for (int i = N; i < N/2; i--)
+				for (int i = N; i > N/2; i--)
 				{
 					if (S.IndexOf(Convert.ToString(i, 2)) == -1)
 						return false;
