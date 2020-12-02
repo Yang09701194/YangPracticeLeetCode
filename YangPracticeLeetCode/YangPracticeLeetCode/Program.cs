@@ -21,7 +21,7 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_5614_FindtheMostCompetitiveSubsequence.Test();
+			//_5614_FindtheMostCompetitiveSubsequence.Test();
 
 			//_5613_RichestCustomerWealth.Test();
 
@@ -62,7 +62,7 @@ namespace YangPracticeLeetCode
 
 			//_5472_ShuffleString.Test();
 
-			//_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
+			_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
 
 			//_5464_WaterBottles.Test();
 
