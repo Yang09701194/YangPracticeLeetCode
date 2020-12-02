@@ -101,7 +101,7 @@ namespace YangPracticeLeetCode
 
 			//_1023_BinaryStringWithSubstringsRepresenting1ToN.Test();
 
-			//_1020_PartitionArrayIntoThreePartsWithEqualSum.Test();
+			//_1013_PartitionArrayIntoThreePartsWithEqualSum.Test();
 
 			//_1003_CheckIfWordIsValidAfterSubstitutions.Test();
 

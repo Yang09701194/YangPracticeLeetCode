@@ -46,8 +46,6 @@ namespace YangPracticeLeetCode.Solved
 		///
 		/// The overall time complexity has upper bound O(S^2).
 		///
-		///
-		///
 		/// 
 		/// </summary>
 		public class Solution

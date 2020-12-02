@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YangPracticeLeetCode.Solved
 {
-    class _1020_PartitionArrayIntoThreePartsWithEqualSum
+    class _1013_PartitionArrayIntoThreePartsWithEqualSum
     {
 
         public static void Test()
@@ -20,6 +20,10 @@ namespace YangPracticeLeetCode.Solved
 
         }
 
+		/// <summary>
+		/// 是直接partition  不是排列組合  所以循序左往右計算
+		/// 如果是排列組合就難了
+		/// </summary>
         public class Solution
         {
             public bool CanThreePartsEqualSum(int[] A)
@@ -38,7 +42,7 @@ namespace YangPracticeLeetCode.Solved
                         currentSum = 0;
                     }
                 }
-                return matchCount == 3;
+                return matchCount >= 3;
             }
         }
 
