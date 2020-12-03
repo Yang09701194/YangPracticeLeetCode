@@ -62,7 +62,7 @@ namespace YangPracticeLeetCode
 
 			//_5472_ShuffleString.Test();
 
-			_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
+			//_5465_NumberofNodesintheSubTreeWiththeSameLabel.Test();
 
 			//_5464_WaterBottles.Test();
 
@@ -72,7 +72,7 @@ namespace YangPracticeLeetCode
 
 			//  WAIT  _5405_CountTripletsThatCanFormTwoArraysofEqualXOR.Test();	
 
-			//_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
 
 			//_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.Test();
 			//_5195_LongestHappyString.Test();
