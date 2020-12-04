@@ -15,15 +15,23 @@ namespace YangPracticeLeetCode.Solved
 			//Console.WriteLine(
 			//s.LongestSubarray(new[] { 4, 2, 2, 2, 4, 4, 2, 2 }, 0)
 			//);
-			Console.WriteLine(
-						s.LongestSubarray(new[] { 8, 2, 4, 7 }, 4)
-						);
+			//Console.WriteLine(
+			//			s.LongestSubarray(new[] { 8, 2, 4, 7 }, 4)
+			//			);
+
+			//[9,10,1,7,9,3,9,9]
+			//7
+			//Console.WriteLine(
+			//	s.LongestSubarray(new[] { 9, 10, 1, 7, 9, 3, 9, 9 }, 7)
+			//);
+
+
 
 			//[2,2,2,4,4,2,5,5,5,5,5,2]
 			//2
-			//Console.WriteLine(
-			//	s.LongestSubarray(new[] { 2, 2, 2, 4, 4, 2, 5, 5, 5, 5, 5, 2 }, 2)
-			//);
+			Console.WriteLine(
+				s.LongestSubarray(new[] { 2, 2, 2, 4, 4, 2, 5, 5, 5, 5, 5, 2 }, 2)
+			);
 
 
 
@@ -37,12 +45,244 @@ namespace YangPracticeLeetCode.Solved
 
 
 
+		/// <summary>
+		/// 發現一個新規則  動態選取區域  應該是往右移棟時  起始點i就要直接++
+		/// 這樣子對於某些case會快很多  外層的i如果在內層j一直推進
+		
+		/// </summary>
+		public class Solution
+		{
+			public int LongestSubarray(int[] nums, int limit)
+			{
+
+				int currI = nums[0];
+				int currLength = 1;
+				int maxLeng = 1;
+
+				//發現標註掉竟然又快20ms  還是20%
+				//bool isAllSame = true;
+				//for (int i = 1; i < nums.Length; i++)
+				//{
+				//	if (currI != nums[i])
+				//	{
+				//		isAllSame = false;
+				//		currI = nums[i];
+				//		if (currLength > maxLeng)
+				//			maxLeng = currLength;
+				//		currLength = 1;
+				//	}
+				//	else
+				//	{
+				//		currLength++;
+				//	}
+				//}
+
+				//if (limit == 0)
+				//	return maxLeng;
+				////if (isAllSame)
+				//	return nums.Length;
+
+				//maxLeng -= 1;
+				List<int> numL = nums.ToList();
+				List<int> curr = new List<int>();
+
+				for (int i = 0; i < maxLeng; i++)
+				{
+					curr.Add(numL[i]);
+				}
+
+
+				int max = 0, min = int.MaxValue;
+				if (curr.Any())
+				{
+					max = curr.Max();
+					min = curr.Min();
+				}
+
+
+				for (int i = 0; i < numL.Count; i++)
+				{
+					int end = i + maxLeng;
+
+					if (end > numL.Count)
+						break;
+
+					for (int j = end; j < numL.Count; j++)
+					{
+						curr.Add(numL[j]);
+
+						//if (j + curr.Count >= numL.Count)
+						//	break;
+
+						if (numL[j] > max)
+							max = numL[j];
+						if (numL[j] < min)
+							min = numL[j];
+
+						if (Math.Abs(max - min) <= limit)
+						{
+							if (curr.Count > maxLeng)
+								maxLeng = curr.Count;
+						}
+						if (Math.Abs(max - min) > limit)
+						{
+							int c0 = curr[0];
+							curr.RemoveAt(0);
+
+							i++;//
+
+							if (curr.Any())
+							{
+								if (c0 == max)
+									max = curr.Max();
+								if (c0 == min)
+									min = curr.Min();
+
+
+							}
+						}
+
+
+					}
+
+				}
+
+				return maxLeng;
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// 發現一個新規則  動態選取區域  應該是往右移棟時  起始點i就要直接++
+		/// 這樣子對於某些case會快很多  外層的i如果在內層j一直推進
+		/// 那外層不用跑幾次就結束了
+		///
+		/// 之前都沒想到  j全部輪完之後  i才++ 等於j做過的又再重複做一次
+		/// 而且右移之後的curr  要取幾個  長度都會亂掉
+		/// 因為到下一次i  curr的長度是已經跑到底的  已經不適用目前的i了
+		/// 一知道j內i++  就省掉一堆code  
+		///  
+		/// 但是這樣還是在20%   最後一個最明顯的  就是curr.Max Min一直計算
+		/// 這邊直接想確實不容易想到怎麼在優化
+		/// 因為一旦選取區往右移  元素就變動了  此時最前面被移除的  可能是最大  也可能是最小
+		/// 所以要重新找
+		///
+		/// 但就是在這邊  比對90%的解  竟然想到了一個方式去處理
+		/// 來跟著試試
+		/// 
+		/// </summary>
+		public class Solution
+		{
+			public int LongestSubarray(int[] nums, int limit)
+			{
+
+				int currI = nums[0];
+				int currLength = 1;
+				int maxLeng = 1;
+
+				//發現標註掉竟然又快20ms  還是20%
+				//bool isAllSame = true;
+				//for (int i = 1; i < nums.Length; i++)
+				//{
+				//	if (currI != nums[i])
+				//	{
+				//		isAllSame = false;
+				//		currI = nums[i];
+				//		if (currLength > maxLeng)
+				//			maxLeng = currLength;
+				//		currLength = 1;
+				//	}
+				//	else
+				//	{
+				//		currLength++;
+				//	}
+				//}
+
+				//if (limit == 0)
+				//	return maxLeng;
+				////if (isAllSame)
+				//	return nums.Length;
+
+				//maxLeng -= 1;
+				List<int> numL = nums.ToList();
+				List<int> curr = new List<int>();
+
+				for (int i = 0; i < maxLeng; i++)
+				{
+					curr.Add(numL[i]);
+				}
+
+
+				int max = 0, min = int.MaxValue;
+				if (curr.Any())
+				{
+					max = curr.Max();
+					min = curr.Min();
+				}
+
+
+				for (int i = 0; i < numL.Count; i++)
+				{
+					int end = i + maxLeng;
+
+					if (end > numL.Count)
+						break;
+
+					for (int j = end; j < numL.Count; j++)
+					{
+						curr.Add(numL[j]);
+
+						//if (j + curr.Count >= numL.Count)
+						//	break;
+
+						if (numL[j] > max)
+							max = numL[j];
+						if (numL[j] < min)
+							min = numL[j];
+
+						if (Math.Abs(max - min) <= limit)
+						{
+							if (curr.Count > maxLeng)
+								maxLeng = curr.Count;
+						}
+						if (Math.Abs(max - min) > limit)
+						{
+							int c0 = curr[0];
+							curr.RemoveAt(0);
+
+							i++;//
+
+							if (curr.Any())
+							{
+								if (c0 == max)
+									max = curr.Max();
+								if (c0 == min)
+									min = curr.Min();
+
+
+							}
+						}
+
+
+					}
+
+				}
+
+				return maxLeng;
+			}
+		}
+
+
+
+
 
 		/// <summary>
 		/// 每次都計算 curr.Min Nax 是很明顯的優化地方  n^2  改成紀錄min max 新加入的比對  有更大或更小才更新  否則直接維持  因為每次的確只加一個數字  + 下一個和前個相同  continue
 		/// 速度 22%  快一倍了 488ms
 		/// </summary>
-		public class Solution
+		public class Solution_V3
 		{
 			public int LongestSubarray(int[] nums, int limit)
 			{
@@ -92,8 +332,6 @@ namespace YangPracticeLeetCode.Solved
 
 				for (int i = 0; i < numL.Count; i++)
 				{
-					//if(i != 0)
-					//	curr.RemoveAt(0);
 					int end = i + maxLeng; // - 1;
 					if (end < 0)
 						end = 0;
@@ -101,12 +339,8 @@ namespace YangPracticeLeetCode.Solved
 					if (end > numL.Count)
 						break;
 
-					//for (int j = end; j < numL.Count; j++)
-					//{
-					//	curr.Add(numL[j]);
-					//}
 
-					//int start = curr.Any() ? i+1 : 0;
+
 					for (int j = end; j < numL.Count; j++)
 					{
 						curr.Add(numL[j]);
@@ -139,8 +373,6 @@ namespace YangPracticeLeetCode.Solved
 								if (c0 == min)
 									min = curr.Min();
 							}
-							
-								
 							break;
 						}
 
@@ -149,7 +381,6 @@ namespace YangPracticeLeetCode.Solved
 				}
 
 				return maxLeng;
-
 			}
 		}
 
@@ -162,12 +393,12 @@ namespace YangPracticeLeetCode.Solved
 		{
 			public int LongestSubarray(int[] nums, int limit)
 			{
-			
+
 				int currr = nums[0];
 				int currLength = 1;
 				int maxLeng = 1;
 				bool isAllSame = true;
-				for (int i =1; i < nums.Length; i++)
+				for (int i = 1; i < nums.Length; i++)
 				{
 					if (currr != nums[i])
 					{
@@ -237,7 +468,7 @@ namespace YangPracticeLeetCode.Solved
 				}
 
 				return maxLeng;
-				
+
 			}
 		}
 
