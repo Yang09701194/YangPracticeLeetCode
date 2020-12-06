@@ -117,6 +117,9 @@
     <Compile Include="Solved\_1016_BinaryStringWithSubstringsRepresenting1ToN.cs" />
     <Compile Include="Solved\_5613_RichestCustomerWealth.cs" />
     <Compile Include="Solved\_5614_FindtheMostCompetitiveSubsequence.cs" />
+    <Compile Include="Solved\_5617_GoalParserInterpretation.cs" />
+    <Compile Include="Solved\_5618_MaxNumberofKSumPairs.cs" />
+    <Compile Include="Solved\_5620_ConcatenationofConsecutiveBinaryNumbers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

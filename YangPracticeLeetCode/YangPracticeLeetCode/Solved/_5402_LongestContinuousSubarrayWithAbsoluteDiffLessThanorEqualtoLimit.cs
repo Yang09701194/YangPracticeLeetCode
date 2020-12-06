@@ -46,9 +46,18 @@ namespace YangPracticeLeetCode.Solved
 
 
 		/// <summary>
-		/// 發現一個新規則  動態選取區域  應該是往右移棟時  起始點i就要直接++
-		/// 這樣子對於某些case會快很多  外層的i如果在內層j一直推進
-		
+		/// 要保持在動態右移區間  能透每次右移  min max暫存區最右的元素是 min max
+		///
+		/// 這邊又會用到那種小的或大的一直往左鑽  比他大的或小的 都會被翻掉  直到遇到更小或大的  類似牆壁才擋住
+		/// 然後在相範圍右移  去除最左元素時 站存區也要能從最左移除
+		/// 
+		/// 用List有個限制  最大先進先出pop沒問題  但是這個從右往左鑽的動作沒有方法能支援
+		///
+		/// Stack則是最大的先進後出  pop沒辦法取到最大的   
+		///  
+		/// 最後發現是新招   這邊確實只能用LinkedList的這種左右都能移除塞入的特性
+		/// 
+		/// 
 		/// </summary>
 		public class Solution
 		{
@@ -59,47 +68,16 @@ namespace YangPracticeLeetCode.Solved
 				int currLength = 1;
 				int maxLeng = 1;
 
-				//發現標註掉竟然又快20ms  還是20%
-				//bool isAllSame = true;
-				//for (int i = 1; i < nums.Length; i++)
-				//{
-				//	if (currI != nums[i])
-				//	{
-				//		isAllSame = false;
-				//		currI = nums[i];
-				//		if (currLength > maxLeng)
-				//			maxLeng = currLength;
-				//		currLength = 1;
-				//	}
-				//	else
-				//	{
-				//		currLength++;
-				//	}
-				//}
-
-				//if (limit == 0)
-				//	return maxLeng;
-				////if (isAllSame)
-				//	return nums.Length;
-
+				List<int> maxS = new List<int>();
+				List<int> minS = new List<int>();
+				
 				//maxLeng -= 1;
 				List<int> numL = nums.ToList();
 				List<int> curr = new List<int>();
-
-				for (int i = 0; i < maxLeng; i++)
-				{
-					curr.Add(numL[i]);
-				}
-
-
-				int max = 0, min = int.MaxValue;
-				if (curr.Any())
-				{
-					max = curr.Max();
-					min = curr.Min();
-				}
-
-
+				
+				maxS.Add(numL[0]);
+				minS.Add(numL[0]);
+				
 				for (int i = 0; i < numL.Count; i++)
 				{
 					int end = i + maxLeng;
@@ -111,35 +89,33 @@ namespace YangPracticeLeetCode.Solved
 					{
 						curr.Add(numL[j]);
 
-						//if (j + curr.Count >= numL.Count)
-						//	break;
+						//if (numL[j] > maxQ.First())
+						//	maxQ.EnList(numL[j]);
+						//if (numL[j] < maxQ.First())
+						//	minQ.EnList(numL[j]);
+						while (maxS.Any() && numL[j] > maxS.Last())
+						{
+							maxS.RemoveAt(maxS.Count - 1);
+						}
+						maxS.Add(numL[j]);
+						while (minS.Any() && numL[j] < minS.First())
+						{
+							minS.RemoveAt(minS.Count - 1);
+						}
+						minS.Add(numL[j]);
 
-						if (numL[j] > max)
-							max = numL[j];
-						if (numL[j] < min)
-							min = numL[j];
-
-						if (Math.Abs(max - min) <= limit)
+						if (Math.Abs(maxS.First() - minS.First()) <= limit)
 						{
 							if (curr.Count > maxLeng)
 								maxLeng = curr.Count;
 						}
-						if (Math.Abs(max - min) > limit)
+						if (Math.Abs(maxS.First() - minS.First()) > limit)
 						{
-							int c0 = curr[0];
+							//int c0 = curr[0];
 							curr.RemoveAt(0);
 
-							i++;//
-
-							if (curr.Any())
-							{
-								if (c0 == max)
-									max = curr.Max();
-								if (c0 == min)
-									min = curr.Min();
-
-
-							}
+							i++;
+							
 						}
 
 
@@ -173,7 +149,7 @@ namespace YangPracticeLeetCode.Solved
 		/// 來跟著試試
 		/// 
 		/// </summary>
-		public class Solution
+		public class Solution_V4
 		{
 			public int LongestSubarray(int[] nums, int limit)
 			{

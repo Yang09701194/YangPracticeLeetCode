@@ -21,6 +21,16 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
+			//next  _5620_ConcatenationofConsecutiveBinaryNumbers
+
+			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+
+
+			//_5618_MaxNumberofKSumPairs.Test();
+
+			//_5617_GoalParserInterpretation.Test();
+
+
 			//_5614_FindtheMostCompetitiveSubsequence.Test();
 
 			//_5613_RichestCustomerWealth.Test();
@@ -72,7 +82,7 @@ namespace YangPracticeLeetCode
 
 			//  WAIT  _5405_CountTripletsThatCanFormTwoArraysofEqualXOR.Test();	
 
-			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+
 
 			//_5401_CheckIfAll1sAreatLeastLengthKPlacesAway.Test();
 			//_5195_LongestHappyString.Test();
