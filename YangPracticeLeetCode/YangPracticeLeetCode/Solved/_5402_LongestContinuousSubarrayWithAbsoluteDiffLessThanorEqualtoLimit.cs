@@ -28,7 +28,7 @@ namespace YangPracticeLeetCode.Solved
 
 
 			//[2,2,2,4,4,2,5,5,5,5,5,2]
-			//2
+			//	2
 			Console.WriteLine(
 				s.LongestSubarray(new[] { 2, 2, 2, 4, 4, 2, 5, 5, 5, 5, 5, 2 }, 2)
 			);
@@ -41,6 +41,126 @@ namespace YangPracticeLeetCode.Solved
 
 
 		}
+
+
+		public class Solution
+		{
+			public int LongestSubarray(int[] nums, int limit)
+			{
+				int maxLeng = 1;
+
+				LinkedList<int> maxS = new LinkedList<int>();
+				LinkedList<int> minS = new LinkedList<int>();
+
+
+				maxS.AddLast(nums[0]);
+				minS.AddLast(nums[0]);
+
+				for (int i =0, j = 1; j < nums.Length; j++)
+				{
+
+					if (i + maxLeng > nums.Length)
+						return maxLeng;
+
+					while (maxS.Any() && nums[j] > maxS.Last.Value)
+					{
+						maxS.RemoveLast();
+					}
+					maxS.AddLast(nums[j]);
+					while (minS.Any() && nums[j] < minS.Last.Value)
+					{
+						minS.RemoveLast();
+					}
+					minS.AddLast(nums[j]);
+					
+					while (maxS.First() - minS.First.Value > limit)
+					{
+						if (nums[i] == maxS.First.Value)
+						{
+							maxS.RemoveFirst();
+						}
+						if (nums[i] == minS.First.Value)
+						{
+							minS.RemoveFirst();
+						}
+						i++;
+					}
+
+					maxLeng = Math.Max(maxLeng, j - i + 1);
+					
+				}
+
+				return maxLeng;
+			}
+		}
+
+
+		/// <summary>
+		/// Cola可能是特殊詞彙吧  100%
+		/// </summary>
+		public class Solution_V8
+		{
+			public int LongestSubarray(int[] nums, int limit)
+			{
+				int left = 0;
+				int right = 0;
+				List<int> minCola = new List<int>();
+				List<int> maxCola = new List<int>();
+				int result = 0;
+				while (left < nums.Length)
+				{
+					while (right < nums.Length)
+					{
+						//Console.WriteLine("left: " + left +", right: " + right);
+						while (minCola.Count > 0 && nums[minCola[minCola.Count - 1]] >= nums[right])
+						{
+							minCola.RemoveAt(minCola.Count - 1);
+						}
+						minCola.Add(right);
+						while (maxCola.Count > 0 && nums[maxCola[maxCola.Count - 1]] <= nums[right])
+						{
+							maxCola.RemoveAt(maxCola.Count - 1);
+						}
+						maxCola.Add(right);
+
+						//Console.Write("min: ");
+						//foreach(var n in minCola)
+						//Console.Write(n + "(" + nums[n] + ") ");
+						//Console.WriteLine();
+						//Console.Write("max: ");
+						//foreach(var n in maxCola)
+						//Console.Write(n + "(" + nums[n] + ") ");
+						//Console.WriteLine();
+
+						int min = nums[minCola[0]];
+						int max = nums[maxCola[0]];
+
+						if (Math.Abs(max - min) > limit)
+						{
+							break;
+						}
+						//Console.WriteLine("dif:" + Math.Abs(max-min));
+
+						if (right - left + 1 > result)
+							result = right - left + 1;
+						right++;
+						//Console.WriteLine("res: " +result);
+					}
+					if (minCola[0] == left)
+						minCola.RemoveAt(0);
+					if (maxCola[0] == left)
+						maxCola.RemoveAt(0);
+					left++;
+
+					if (nums.Length - left <= result)
+					{
+						return result;
+					}
+				}
+				return result;
+			}
+		}
+
 
 
 
@@ -57,69 +177,69 @@ namespace YangPracticeLeetCode.Solved
 		///  
 		/// 最後發現是新招   這邊確實只能用LinkedList的這種左右都能移除塞入的特性
 		/// 
-		/// 
+		/// 如果要用這招  用LinkedList也要小心  取First Last如果用First() Last()
+		/// 應該是套用Linq的
+		/// 這樣就在一堆1  12 13 14  TLE
+		///
+		/// 用List的RemoveA  反而還有20%
+		///
+		/// 但是使用上LinkedList   First.Value   Last.Value 就60% 真的比較快
+		/// 但有個怪點是   我的寫法和90%完全一樣  但 90%有幾次也是跳到 60%
+		///
+		///  還有一招   根本不用開一個站存區curr  這一還要remove add
+		/// 直接用雙指標  指標移動就相當於區間移動
+		/// 省掉多開一個   List
+		///
+		/// 另外一個更快的  連max min都存陣列位置
+		/// 真的比較快  176ms 就上面那個 100%
+		/// 其實手法都類似  也只是用 List
+		/// 應該只是快在 取while  比大小 那邊不用呼叫Last First  完全使用同一個陣列
+		/// 不用一直切換吧  不確定
 		/// </summary>
-		public class Solution
+		public class Solution_V6
 		{
 			public int LongestSubarray(int[] nums, int limit)
 			{
-
-				int currI = nums[0];
-				int currLength = 1;
 				int maxLeng = 1;
 
 				List<int> maxS = new List<int>();
 				List<int> minS = new List<int>();
-				
-				//maxLeng -= 1;
-				List<int> numL = nums.ToList();
-				List<int> curr = new List<int>();
-				
-				maxS.Add(numL[0]);
-				minS.Add(numL[0]);
-				
-				for (int i = 0; i < numL.Count; i++)
+
+
+				maxS.Add(nums[0]);
+				minS.Add(nums[0]);
+
+				for (int i = 0, j = 1; j < nums.Length; j++)
 				{
-					int end = i + maxLeng;
 
-					if (end > numL.Count)
-						break;
+					if (i + maxLeng > nums.Length)
+						return maxLeng;
 
-					for (int j = end; j < numL.Count; j++)
+					while (maxS.Any() && nums[j] > maxS.Last())
 					{
-						curr.Add(numL[j]);
-
-						//if (numL[j] > maxQ.First())
-						//	maxQ.EnList(numL[j]);
-						//if (numL[j] < maxQ.First())
-						//	minQ.EnList(numL[j]);
-						while (maxS.Any() && numL[j] > maxS.Last())
-						{
-							maxS.RemoveAt(maxS.Count - 1);
-						}
-						maxS.Add(numL[j]);
-						while (minS.Any() && numL[j] < minS.First())
-						{
-							minS.RemoveAt(minS.Count - 1);
-						}
-						minS.Add(numL[j]);
-
-						if (Math.Abs(maxS.First() - minS.First()) <= limit)
-						{
-							if (curr.Count > maxLeng)
-								maxLeng = curr.Count;
-						}
-						if (Math.Abs(maxS.First() - minS.First()) > limit)
-						{
-							//int c0 = curr[0];
-							curr.RemoveAt(0);
-
-							i++;
-							
-						}
-
-
+						maxS.RemoveAt(maxS.Count - 1);
 					}
+					maxS.Add(nums[j]);
+					while (minS.Any() && nums[j] < minS.Last())
+					{
+						minS.RemoveAt(minS.Count - 1);
+					}
+					minS.Add(nums[j]);
+
+					while (maxS.First() - minS.First() > limit)
+					{
+						if (nums[i] == maxS.First())
+						{
+							maxS.RemoveAt(0);
+						}
+						if (nums[i] == minS.First())
+						{
+							minS.RemoveAt(0);
+						}
+						i++;
+					}
+
+					maxLeng = Math.Max(maxLeng, j - i + 1);
 
 				}
 
@@ -127,6 +247,79 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
+
+
+
+		/// <summary>
+		/// v4 再發現 其實 i 在j內一直遞增 加上maxlen一直遞增  其實外部的i迴圈根本不需要了
+		/// 再簡化一版
+		/// </summary>
+		public class Solution_V5
+		{
+			public int LongestSubarray(int[] nums, int limit)
+			{
+
+				int currI = nums[0];
+				int currLength = 1;
+				int maxLeng = 1;
+				List<int> numL = nums.ToList();
+				List<int> curr = new List<int>();
+
+				for (int i = 0; i < maxLeng; i++)
+				{
+					curr.Add(numL[i]);
+				}
+
+
+				int max = 0, min = int.MaxValue;
+				if (curr.Any())
+				{
+					max = curr.Max();
+					min = curr.Min();
+				}
+
+
+				int end = 0 + maxLeng;
+
+
+				for (int j = end; j < numL.Count; j++)
+				{
+					curr.Add(numL[j]);
+
+					//if (j + curr.Count >= numL.Count)
+					//	break;
+
+					if (numL[j] > max)
+						max = numL[j];
+					if (numL[j] < min)
+						min = numL[j];
+
+					if (Math.Abs(max - min) <= limit)
+					{
+						if (curr.Count > maxLeng)
+							maxLeng = curr.Count;
+					}
+					if (Math.Abs(max - min) > limit)
+					{
+						int c0 = curr[0];
+						curr.RemoveAt(0);
+
+						if (curr.Any())
+						{
+							if (c0 == max)
+								max = curr.Max();
+							if (c0 == min)
+								min = curr.Min();
+
+
+						}
+					}
+
+				}
+
+				return maxLeng;
+			}
+		}
 
 
 
@@ -140,7 +333,7 @@ namespace YangPracticeLeetCode.Solved
 		/// 因為到下一次i  curr的長度是已經跑到底的  已經不適用目前的i了
 		/// 一知道j內i++  就省掉一堆code  
 		///  
-		/// 但是這樣還是在20%   最後一個最明顯的  就是curr.Max Min一直計算
+		/// 但是這樣還是在27%   最後一個最明顯的  就是curr.Max Min一直計算
 		/// 這邊直接想確實不容易想到怎麼在優化
 		/// 因為一旦選取區往右移  元素就變動了  此時最前面被移除的  可能是最大  也可能是最小
 		/// 所以要重新找
