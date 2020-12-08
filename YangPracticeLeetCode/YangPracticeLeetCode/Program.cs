@@ -21,9 +21,9 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			//next  _5620_ConcatenationofConsecutiveBinaryNumbers
+			_5620_ConcatenationofConsecutiveBinaryNumbers.Test();
 
-			_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
+			//_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
 
 
 			//_5618_MaxNumberofKSumPairs.Test();
