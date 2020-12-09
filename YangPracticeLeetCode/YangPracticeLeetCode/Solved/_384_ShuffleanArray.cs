@@ -15,7 +15,7 @@ namespace YangPracticeLeetCode.Solved
 
 			//Console.WriteLine(s.NumPoints());
 
-			//Console.WriteLine(s.SpecialArray(new int[] { 3, 5 }));
+			Console.WriteLine(s.SpecialArray(new int[] { 3, 5 }));
 
 		}
 

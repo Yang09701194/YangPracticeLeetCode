@@ -111,7 +111,6 @@
     <Compile Include="Solved\_5536_MaximalNetworkRank.cs" />
     <Compile Include="Solved\_1616_SplitTwoStringstoMakePalindrome.cs" />
     <Compile Include="Solved\_387_FirstUniqueCharacterinaString.cs" />
-    <Compile Include="Solved\_384_ShuffleanArray.cs" />
     <Compile Include="Solved\_824_GoatLatin.cs" />
     <Compile Include="Solved\_1018_BinaryPrefixDivisibleBy5.cs" />
     <Compile Include="Solved\_1016_BinaryStringWithSubstringsRepresenting1ToN.cs" />
@@ -120,6 +119,7 @@
     <Compile Include="Solved\_5617_GoalParserInterpretation.cs" />
     <Compile Include="Solved\_5618_MaxNumberofKSumPairs.cs" />
     <Compile Include="Solved\_5620_ConcatenationofConsecutiveBinaryNumbers.cs" />
+    <Compile Include="Solved\_384_ShuffleanArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

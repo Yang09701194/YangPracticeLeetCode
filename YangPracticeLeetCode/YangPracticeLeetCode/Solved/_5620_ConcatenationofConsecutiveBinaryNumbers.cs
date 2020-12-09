@@ -13,19 +13,161 @@ namespace YangPracticeLeetCode.Solved
 		public static void Test()
 		{
 			Solution s = new Solution();
+			Solution_V5 s6 = new Solution_V5();
 
 			//Console.WriteLine(s.NumPoints());
-
 			//Console.WriteLine(s.ConcatenatedBinary(3));
-			Console.WriteLine(s.ConcatenatedBinary(4926));
 
 
+			for (int i = 0; i <= 12; i++)
+			{
+				Console.WriteLine(s.ConcatenatedBinary(12));
+			}
+			//Console.WriteLine(s.ConcatenatedBinary(4926));
+			for (int i = 0; i <= 12; i++)
+			{
+				Console.WriteLine(s6.ConcatenatedBinary(i));
+			}
 
 		}
 
 
 
-		public class Solution
+
+		/// <summary>
+		/// Sol 3
+		/// 最快  104ms
+		/// 快在2的pow的判斷  比我log快
+		/// Time Complexity: \mathcal{O}(n)O(n). We iterate nn numbers, and for each number we spend \mathcal{O}(1)O(1) to add it to the final result.
+		///Space Complexity: \mathcal{O}(1)O(1), since we do not need any extra data structure.
+		/// </summary>
+		class Solution
+		{
+			public int ConcatenatedBinary(int n)
+			{
+				int MOD = 1000000007;
+				int length = 0; // bit length of addends
+				long result = 0; // long accumulator
+				for (int i = 1; i <= n; i++)
+				{
+					// when meets power of 2, increase the bit length
+					if ((i & (i - 1)) == 0)
+					{
+						length++;
+					}
+					result = ((result << length) | i) % MOD;
+				}
+				return (int)result;
+			}
+		}
+
+
+		/// <summary>
+		/// Sol V2  496 ms
+		/// V7原理類似  但是我自己想得比較快  因為我直接取Log+1
+		/// </summary>
+		class Solution_V8
+		{
+			public int ConcatenatedBinary(int n)
+			{
+				int MOD = 1000000007;
+				int length = 0; // bit length of addends
+				long result = 0; // long accumulator
+				for (int i = 1; i <= n; i++)
+				{
+					// when meets power of 2, increase the bit length
+					if (Math.Pow(2, (int)(Math.Log(i) / Math.Log(2))) == i)
+					{
+						length++;
+					}
+					result = ((result * (int)Math.Pow(2, length)) + i) % MOD;
+				}
+				return (int)result;
+			}
+		}
+
+		/// <summary>
+		/// Sol 2nd 不一位一位移  一次計算i的bin長度   直接移動
+		/// 就  324ms 也太快了  但是才 53%
+		/// 可見一堆人都去抄 Sol 3了
+		/// Time Complexity: \mathcal{O}(n\log(n))O(nlog(n)). We iterate nn numbers, and for each number we spend \mathcal{O}(\log(n))O(log(n)) to check wether it is power of 22 and add to the final result.
+		///Space Complexity: \mathcal{O}(1)O(1), since we do not need any extra data structure.
+		/// </summary>
+		public class Solution_V7
+		{
+			public int ConcatenatedBinary(int n)
+			{
+				const long num = (long)1000000007;
+				long lb = 0;
+				int bitLen = 1;
+				for (int i = 1; i <= n; i++)
+				{
+					bitLen = GetBinaryLength(i);
+					lb = lb << bitLen;
+					lb += i;
+					lb = lb % num;
+				}
+				return (int)lb;
+			}
+
+			public static int GetBinaryLength(int n)
+			{
+				return (int)Math.Log(n, 2) + 1;
+			}
+
+		}
+
+		/// <summary>
+		/// sol有提到一點
+		/// 免去字串拼接可以省掉很多時間
+		/// 這樣子跟SBuilder 相同  只是少字串拼接
+		/// 但可能SB太快  沒差多少
+		/// 但是真的就比 += 快
+		///
+		///Time Complexity: \mathcal{O}(n\log(n))O(nlog(n)). We iterate nn numbers, and for each number we spend \mathcal{O}(\log(n))O(log(n)) to transform it into the binary form and add it to the final result.
+		/// Space Complexity: Depends on the implementation. In Python, we firstly concatenate all string together, so the total space usage is \mathcal{O}(n\log(n))O(nlog(n)). While in Java and C++, we add the string into the final result immediately without concatenating, so the space complexity is \mathcal{O}(n)O(n). Of course, you can implement the immediately adding version in Python, but that requires extra codes.
+		/// </summary>
+		public class Solution_V6
+		{
+			public static Dictionary<int, string> binSD = new Dictionary<int, string>();
+
+			public int ConcatenatedBinary(int n)
+			{
+				const long num = (long)1000000007;
+				long lb = 0;
+				for (int i = 1; i <= n; i++)
+				{
+					string bin = Convert.ToString(i, 2);
+					for (int j = 0; j < bin.Length; j++)
+					{
+						lb = lb << 1;
+
+						if (bin[j] == '1')
+							lb += 1;
+
+						if (lb > num)
+						{
+							lb = lb % num;
+						}
+					}
+				}
+				return (int)lb;
+			}
+
+		}
+
+
+
+
+
+		/// <summary>
+		/// 別人解答  888ms 原本以為很快了  結果今天答案數夠多  %出來了
+		/// 竟然還是在 47%  可見其他人滿誇張的
+		/// 可能一堆人都有訂 premium  所以都知道解答?
+		///
+		///  有寫到power 已經是有看解答的了  這題不知道數學會看不懂這解法
+		/// </summary>
+		public class Solution_V5
 		{
 			public int ConcatenatedBinary(int n)
 			{
@@ -78,7 +220,13 @@ namespace YangPracticeLeetCode.Solved
 		/// 用所知最快的Cache Dic
 		/// 成功加速到1596ms
 		/// 不過這有點用額外招了
-		/// 以全新重跑來說  這樣並沒有任何進步 
+		/// 以全新重跑來說  這樣並沒有任何進步
+		///
+		/// 倍數 mod = mod後 倍數  
+		/// 7%3 = 1
+		/// 7 = 2 * 3 +1
+		/// 14 = 2* 3 + 1 * 2
+		/// = 1 * 2
 		/// </summary>
 		public class Solution_V4
 		{
@@ -110,8 +258,6 @@ namespace YangPracticeLeetCode.Solved
 
 					if (bin[i] == '1')
 						lb += 1;
-					else
-						continue;
 
 					if (lb > num)
 					{

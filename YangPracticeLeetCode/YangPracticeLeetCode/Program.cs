@@ -18,10 +18,12 @@ namespace YangPracticeLeetCode
 		static void Main(string[] args)
 		{
 			var now = DateTime.Now;
-			//CommonHelper.FormatProblemName();
+			CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_5620_ConcatenationofConsecutiveBinaryNumbers.Test();
+			//_384_ShuffleanArray.
+
+			//_5620_ConcatenationofConsecutiveBinaryNumbers.Test();
 
 			//_5402_LongestContinuousSubarrayWithAbsoluteDiffLessThanorEqualtoLimit.Test();
 
