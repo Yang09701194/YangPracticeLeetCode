@@ -21,7 +21,7 @@ namespace YangPracticeLeetCode
 			CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			//_384_ShuffleanArray.
+			//_384_ShuffleanArray.Test();
 
 			//_5620_ConcatenationofConsecutiveBinaryNumbers.Test();
 

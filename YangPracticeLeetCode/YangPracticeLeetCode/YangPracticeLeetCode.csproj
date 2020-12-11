@@ -120,6 +120,8 @@
     <Compile Include="Solved\_5618_MaxNumberofKSumPairs.cs" />
     <Compile Include="Solved\_5620_ConcatenationofConsecutiveBinaryNumbers.cs" />
     <Compile Include="Solved\_384_ShuffleanArray.cs" />
+    <Compile Include="Solved\_380_InsertDeleteGetRandom.cs" />
+    <Compile Include="Solved\_378_KthSmallestElementinaSortedMatrix.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
