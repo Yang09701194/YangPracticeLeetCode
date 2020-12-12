@@ -18,8 +18,10 @@ namespace YangPracticeLeetCode
 		static void Main(string[] args)
 		{
 			var now = DateTime.Now;
-			CommonHelper.FormatProblemName();
+			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
+
+			_378_KthSmallestElementinaSortedMatrix.Test();
 
 			//_384_ShuffleanArray.Test();
 
