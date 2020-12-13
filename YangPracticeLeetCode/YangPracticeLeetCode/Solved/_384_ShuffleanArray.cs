@@ -52,10 +52,11 @@ namespace YangPracticeLeetCode.Solved
 				//稍微改一下 去掉 i j 相同重取的可能性 直接 +1 以不重複
 				// 就再進10%   336ms  81.78%
 				// 應該主要差在這
+				// 這種寫法都算是100%  只是誤差的快慢    320的解跑個幾次 也會變340
 				int i = rnd.Next(oriArr.Length);
 				int j = rnd.Next(oriArr.Length);
 				if (i == j)
-					j = +1;
+					j += 1;
 
 				int temp = shuffleArr[i];
 				shuffleArr[i] = shuffleArr[j];
