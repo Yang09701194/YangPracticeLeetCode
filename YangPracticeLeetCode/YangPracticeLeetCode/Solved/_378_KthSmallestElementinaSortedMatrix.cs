@@ -53,9 +53,127 @@ namespace YangPracticeLeetCode.Solved
 
 
 
-
-
+		/// <summary>
+		/// 這個也是用 sol2 binary search  但是它是真正理解掌握的  所以自由變化
+		/// 在一些細節更簡化直接  同時完全符合 BS的精神
+		///
+		/// 例如  lo = mid + 1;   就是確定mid 不是答案 一定更大  會再省1
+		///
+		/// 
+		/// 因此達到了   116 ms, faster than 96.89% of C# on
+		/// 31.3 MB, less than 91.11% 
+		/// </summary>
 		public class Solution
+		{
+			public int KthSmallest(int[][] matrix, int k)
+			{
+				//binary search
+
+				int lo = matrix[0][0];
+				int hi = matrix[matrix.Length - 1][matrix[0].Length - 1];
+				while (lo < hi)
+				{
+					int mid = lo + (hi - lo) / 2;
+					if (GetCountLessThanOrEuqalToTarget(matrix, mid) < k)
+						lo = mid + 1;
+					else
+						hi = mid;
+				}
+				return lo;
+			}
+
+			public int GetCountLessThanOrEuqalToTarget(int[][] matrix, int target)
+			{
+				int count = 0;
+				int j = matrix[0].Length - 1;
+				for (int i = 0; i < matrix.Length; i++)
+				{
+					while (j >= 0 && matrix[i][j] > target)
+						j--;
+
+					count += j + 1;
+				}
+				return count;
+			}
+		}
+
+
+
+		/// <summary>
+		/// Sol2 Binary Search
+		/// 從最每列第一元素當分界很聰明  因為這個列的右邊所有元素都會比他大
+		/// 相當於要找再小的  可以直接往上移一列  直接跳過這一列
+		/// 然後要再找大的 就是單純往右移動
+		/// 
+		/// Runtime: 120 ms, faster than (82~) 93.24% of C# online submissions for Kth Smallest Element in a Sorted Matrix.
+		/// Memory Usage: 31.1 MB, less than 97.75% of C# online submissions for Kth Smallest Element in a Sorted Matrix.
+		/// 
+		/// </summary>
+		class Solution_V3
+		{
+
+			public int KthSmallest(int[][] matrix, int k)
+			{
+
+				int n = matrix.Length;
+				int start = matrix[0][0], end = matrix[n - 1][n - 1];
+				while (start < end)
+				{
+
+					int mid = start + (end - start) / 2;
+					// first number is the smallest and the second number is the largest
+					int[] smallLargePair = { matrix[0][0], matrix[n - 1][n - 1] };
+
+					int count = this.countLessEqual(matrix, mid, smallLargePair);
+
+					if (count == k) return smallLargePair[0];
+
+					if (count < k) start = smallLargePair[1]; // search higher
+					else end = smallLargePair[0]; // search lower
+				}
+				return start;
+			}
+
+			private int countLessEqual(int[][] matrix, int mid, int[] smallLargePair)
+			{
+
+				int count = 0;
+				int n = matrix.Length, row = n - 1, col = 0;
+
+				while (row >= 0 && col < n)
+				{
+
+					if (matrix[row][col] > mid)
+					{
+
+						// as matrix[row][col] is bigger than the mid, let's keep track of the
+						// smallest number greater than the mid
+						smallLargePair[1] = Math.Min(smallLargePair[1], matrix[row][col]);
+						row--;
+
+					}
+					else
+					{
+
+						// as matrix[row][col] is less than or equal to the mid, let's keep track of the
+						// biggest number less than or equal to the mid
+						smallLargePair[0] = Math.Max(smallLargePair[0], matrix[row][col]);
+						count += row + 1;
+						col++;
+					}
+				}
+
+				return count;
+			}
+		}
+
+
+
+
+		/// <summary>
+		/// 發現可以不用看 i j 直接值  但沒快多少
+		/// </summary>
+		public class Solution_V2
 		{
 			public int KthSmallest(int[][] matrix, int k)
 			{

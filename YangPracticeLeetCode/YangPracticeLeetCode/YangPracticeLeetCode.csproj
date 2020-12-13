@@ -122,6 +122,9 @@
     <Compile Include="Solved\_384_ShuffleanArray.cs" />
     <Compile Include="Solved\_380_InsertDeleteGetRandom.cs" />
     <Compile Include="Solved\_378_KthSmallestElementinaSortedMatrix.cs" />
+    <Compile Include="Solved\_5625_CountofMatchesinTournament.cs" />
+    <Compile Include="Solved\_5626_PartitioningIntoMinimumNumberOfDeciBinaryNumbers.cs" />
+    <Compile Include="Solved\_5627_StoneGameVII.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -21,7 +21,12 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_378_KthSmallestElementinaSortedMatrix.Test();
+			_5627_StoneGameVII.Test();
+
+			//_5626_PartitioningIntoMinimumNumberOfDeciBinaryNumbers.Test();
+
+			//_5625_CountofMatchesinTournament.Test();
+			//running _378_KthSmallestElementinaSortedMatrix.Test();
 
 			//_384_ShuffleanArray.Test();
 
