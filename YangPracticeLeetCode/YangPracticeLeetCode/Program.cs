@@ -21,7 +21,15 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_5627_StoneGameVII.Test();
+			_5631_JumpGameVI.Test();
+
+			//_5630_MaximumErasureValue.Test();
+
+			//_5630_MaximumErasureValue.Test();	
+
+			//_5629_ReformatPhoneNumber.Test();
+			
+			//_5627_StoneGameVII.Test();
 
 			//_5626_PartitioningIntoMinimumNumberOfDeciBinaryNumbers.Test();
 

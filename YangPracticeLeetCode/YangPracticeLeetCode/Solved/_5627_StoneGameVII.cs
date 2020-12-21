@@ -77,7 +77,20 @@ namespace YangPracticeLeetCode.Solved
 		///
 		///我是覺得  除非V4這矩陣是對稱的 才能只右上或左下半
 		/// 來印印看 V4
+		///
+		/// 已印  不適說對稱  但也符合  只有右上角有值
+		///
+		///
+		///  This is just a different way of traversing and filling the 2D array. Instead of traversing diagonally to find the results of subarrays for each length, we would fix our start index at a certain point. And now the end index would incrementally add an element to the subarray and find the results.
+		///  For example, for array = [5, 3, 2, 1], we could fix our start index at[5], end index would incrementally calculate the result for subarrays[5, 3], [5, 3, 2]
+		///and[5, 3, 2, 1].
+		///
+		///  一樣是 Bottom Up  所以想怎麼填表
+		///  填的方式又更省力   拿一個子陣列的開頭固定住  然後一職往右延伸
 		/// 
+		/// 我在這題花得有點久  所以先淺理解到這邊
+		/// todo
+		///  
 		/// </summary>
 		class Solution_App5
 		{
@@ -130,6 +143,20 @@ namespace YangPracticeLeetCode.Solved
 		/// 我先到這樣  之後有空再來細究
 		/// todo
 		///
+		///
+		/// 無論是 v3 或 v4  都是只有右上有值
+		/// 所以真的可以直接算右上
+		/// 左下不用管 
+		/// 
+		///    
+		///    0   90    7   95   91  115  101  122
+		///    0    0   90    5  105   91  115  101
+		///    0    0    0    5    1  105   11  115
+		///    0    0    0    0  100   10  110   12
+		///    0    0    0    0    0  100   10  110
+		///    0    0    0    0    0    0   10   10
+		///    0    0    0    0    0    0    0   10
+		///    0    0    0    0    0    0    0    0
 		/// 
 		/// </summary>
 		class Solution_App4
@@ -322,7 +349,19 @@ namespace YangPracticeLeetCode.Solved
 				{
 					prefixSum[i + 1] = prefixSum[i] + stones[i];
 				}
-				return Math.Abs(findDifference(0, n - 1, true));
+				int res = Math.Abs(findDifference(0, n - 1, true));
+				
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < n; j++)
+					{
+						Console.Write((memo[i, j] + " ").PadLeft(5));
+					}
+
+					Console.WriteLine();
+				}
+
+				return res;
 			}
 		}
 

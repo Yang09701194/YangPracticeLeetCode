@@ -125,6 +125,10 @@
     <Compile Include="Solved\_5625_CountofMatchesinTournament.cs" />
     <Compile Include="Solved\_5626_PartitioningIntoMinimumNumberOfDeciBinaryNumbers.cs" />
     <Compile Include="Solved\_5627_StoneGameVII.cs" />
+    <Compile Include="Solved\_371_SumofTwoIntegers.cs" />
+    <Compile Include="Solved\_5629_ReformatPhoneNumber.cs" />
+    <Compile Include="Solved\_5630_MaximumErasureValue.cs" />
+    <Compile Include="Solved\_5631_JumpGameVI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
