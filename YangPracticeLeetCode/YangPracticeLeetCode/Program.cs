@@ -21,7 +21,10 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			//ProblemRecord.List();
 
-			_5631_JumpGameVI.Test();
+
+			_371_SumofTwoIntegers.Test();
+
+			//_5631_JumpGameVI.Test();
 
 			//_5630_MaximumErasureValue.Test();
 

@@ -71,7 +71,7 @@ namespace YangPracticeLeetCode.Solved
 						if (end == n.Length)
 						{
 							int lastSum = 0;
-							for (int p = i; p < end-2; p++)
+							for (int p = i; p < end-1; p++)
 							{
 								if (n[p] > 0)
 									lastSum += n[p];
@@ -93,8 +93,8 @@ namespace YangPracticeLeetCode.Solved
 					}
 
 					i = maxI;
-					if(max < 0)
-						Console.WriteLine();
+					//if(max < 0)
+					//	Console.WriteLine();
 					sum += max;
 
 				}
