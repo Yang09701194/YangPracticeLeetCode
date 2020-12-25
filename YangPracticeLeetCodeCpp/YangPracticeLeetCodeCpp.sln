@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YangPracticeLeetCodeCpp", "YangPracticeLeetCodeCpp\YangPracticeLeetCodeCpp.vcxproj", "{A1F747E0-9E6A-47E0-94C8-662F86F869BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Debug|x64.ActiveCfg = Debug|x64
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Debug|x64.Build.0 = Debug|x64
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Debug|x86.ActiveCfg = Debug|Win32
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Debug|x86.Build.0 = Debug|Win32
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Release|x64.ActiveCfg = Release|x64
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Release|x64.Build.0 = Release|x64
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Release|x86.ActiveCfg = Release|Win32
+		{A1F747E0-9E6A-47E0-94C8-662F86F869BE}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53180680-0BA9-4F48-880B-C2353A74EDBE}
+	EndGlobalSection
+EndGlobal

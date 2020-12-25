@@ -168,6 +168,11 @@ namespace YangPracticeLeetCode.Solved
 
 
 
+		public static string PadLeft5_0(this string s)
+		{
+			return s.PadLeft(5, '0');
+		}
+
 	}
 
 	

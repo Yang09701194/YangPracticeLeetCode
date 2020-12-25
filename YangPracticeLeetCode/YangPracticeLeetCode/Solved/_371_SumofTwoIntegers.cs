@@ -11,21 +11,26 @@ namespace YangPracticeLeetCode.Solved
 		
 		public static void Test()
 		{
-			Solution s = new Solution();
+			Solution_Log s = new Solution_Log();
 
 			//Console.WriteLine(s.NumPoints());
 
-			Console.WriteLine(s.GetSum(2147483647, -2147483647));
+			//Console.WriteLine(s.GetSum(15, 2));
+			Console.WriteLine(s.GetSum(15, -2));
+			//Console.WriteLine(s.GetSum(2147483647, -2147483647));
 
 		}
 
 
 		/// <summary>
 		/// 解 2 ok
+		/// 這邊有加筆記了  也可以直接看sol
+		/// https://leetcode.com/problems/sum-of-two-integers/solution/
+		/// 解釋字多  看原文
 		/// </summary>
 		class Solution
 		{
-			public int getSum(int a, int b)
+			public int GetSum(int a, int b)
 			{
 				while (b != 0)
 				{
@@ -38,6 +43,33 @@ namespace YangPracticeLeetCode.Solved
 				return a;
 			}
 		}
+
+		class Solution_Log
+		{
+
+			public int GetSum(int a, int b)
+			{
+				while (b != 0)
+				{
+					Console.WriteLine($"a {Convert.ToString(a,2).PadLeft5_0()}");
+					Console.WriteLine($"b {Convert.ToString(b,2).PadLeft5_0()}");
+					int answer = a ^ b;
+					Console.WriteLine($"answer (a^b)   {Convert.ToString(answer, 2).PadLeft5_0()}" );
+					int carry = (a & b) << 1;
+					Console.WriteLine($"carry (a&b)<<1 {Convert.ToString(carry, 2).PadLeft5_0()}");
+
+					a = answer;
+					b = carry;
+				}
+
+				return a;
+			}
+
+		
+
+		}
+
+
 
 
 		/// <summary>
