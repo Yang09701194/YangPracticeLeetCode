@@ -11,7 +11,8 @@ int main2();
 class Solution {
 public:
 	int getSum(int a, int b) {
-		long mask = 0xFFFFFFFF;
+		//long mask = 0xFFFFFFFF;
+		int mask = 0xFFFFFFFF;
 
 		while (b != 0) {
 			int answer = (a ^ b) & mask;

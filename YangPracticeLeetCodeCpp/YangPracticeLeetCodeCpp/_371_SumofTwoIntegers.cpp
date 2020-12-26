@@ -11,7 +11,8 @@ using namespace std;
 int main2() {
 
 	Solution s;
-	auto res = s.getSum(15, -2);
+	auto res = s.getSum(-2147483647, -2147483647);
+	//auto res = s.getSum(15, -2);
 
 	cout << res << endl; 
 
