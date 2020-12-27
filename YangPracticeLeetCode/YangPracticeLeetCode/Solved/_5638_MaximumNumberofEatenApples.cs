@@ -39,6 +39,11 @@ namespace YangPracticeLeetCode.Solved
 		}
 
 
+		//這邊的 Sol 看起來真的像 java 的天下
+		//一堆資結都是 java 特有的  HashMap Priority Queue TreeMap
+		//真的可能要把java也練到刷的自如
+
+
 		/// <summary>
 		/// 完全自  1390ms  已極  來看別人的
 		///
