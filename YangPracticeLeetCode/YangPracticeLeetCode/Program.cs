@@ -19,10 +19,16 @@ namespace YangPracticeLeetCode
 		{
 			var now = DateTime.Now;
 			//CommonHelper.FormatProblemName();
-			//ProblemRecord.List();
+			// when transfer answer  ProblemRecord.List();
+
+			_5638_MaximumNumberofEatenApples.Test();
+
+			//_5637_DetermineifStringHalvesAreAlike.Test();
 
 
-			_371_SumofTwoIntegers.Test();
+			//ing _350_IntersectionofTwoArraysII.Test();
+
+			//_371_SumofTwoIntegers.Test();
 
 			//_5631_JumpGameVI.Test();
 

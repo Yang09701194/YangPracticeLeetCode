@@ -129,6 +129,9 @@
     <Compile Include="Solved\_5629_ReformatPhoneNumber.cs" />
     <Compile Include="Solved\_5630_MaximumErasureValue.cs" />
     <Compile Include="Solved\_5631_JumpGameVI.cs" />
+    <Compile Include="Solved\_350_IntersectionofTwoArraysII.cs" />
+    <Compile Include="Solved\_5637_DetermineifStringHalvesAreAlike.cs" />
+    <Compile Include="Solved\_5638_MaximumNumberofEatenApples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
