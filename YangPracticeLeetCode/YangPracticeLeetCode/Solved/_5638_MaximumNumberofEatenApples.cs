@@ -16,6 +16,7 @@ namespace YangPracticeLeetCode.Solved
 			//Console.WriteLine(s.NumPoints());
 
 
+			Console.WriteLine(s.EatenApples(new int[] { 0, 4, 2, 0, 1, 0, 5, 6, 6, 6, 1, 5, 0, 1, 3, 2 }, new int[] { 0, 3, 3, 0, 2, 0, 4, 4, 1, 11, 2, 8, 0, 1, 2, 4 }));
 			Console.WriteLine(s.EatenApples(new int[] { 5,2,3 }, new int[] { 6,9,10 }));
 
 
@@ -99,6 +100,11 @@ namespace YangPracticeLeetCode.Solved
 		///
 		/// ls.RemoveAt(0)  改成  用 i++ 這邊剛好是一直遞增  就快一倍  50ms vs 19ms 的差距
 		/// 所以RemoveAt 能省掉真的省很多 
+		///
+		/// 後來一段時間再測
+		/// Runtime: 456 ms, faster than 68.25% of C# online submissions for Maximum Number of Eaten Apples.
+		//Memory Usage: 44.8 MB, less than 7.94% of C# online submissions for Maximum Number of Eaten Apples.
+		///
 		/// </summary>
 		public class Solution_V2_Pass
 		{
@@ -149,6 +155,8 @@ namespace YangPracticeLeetCode.Solved
 				int l = ai.Count;
 
 
+
+
 				List<AppleInfo> remains = new List<AppleInfo>();
 				for (int day = 0; day <= maxDay;)
 				{
@@ -170,9 +178,78 @@ namespace YangPracticeLeetCode.Solved
 					if (!(aI < l) && !remains.Any())
 						break;
 
+
+					if (
+						(
+							aI < l  && aI > 0 &&
+							//aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI - 1].cou > 0
+							//&& 
+							day <= ai.Count - 1 &&
+							ai[aI].end == maxDay && ai[aI].id != ai.Count - 1
+
+						)
+					)
+					{
+						int oriAi = aI;
+						++aI;
+						while (aI < l && ai[aI].cou == 0 || ai[aI].end < day)
+						{
+							++aI;
+						}
+
+						if (aI < l && ai[aI].end >= day && ai[aI].start < day) 
+						{
+							if (!remains.Any())
+							{
+								remains.Add(ai[aI]);
+							}
+							else
+							{
+								for (int i = 0; i < remains.Count; i++)
+								{
+									if (ai[aI].id != remains[i].id)
+									{
+										//put end as late as possible to eat
+										if (ai[aI].end <= remains[i].end)
+										{
+											remains.Insert(i, ai[aI]);
+											break;
+										}
+										if (i == remains.Count - 1)
+										{
+											remains.Add(ai[aI]);
+											break;
+										}
+
+									}
+
+								}
+							}
+
+							day--;
+							continue;
+
+						}
+						else
+						{
+							aI = oriAi;
+						}
+					}
+
 					bool isGotoRemain = false;
-					if (aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI -1].cou > 0
-						&& ai[aI - 1].end - day + 1 <= ai[aI - 1].cou)
+					if (
+						(
+						aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI -1].cou > 0
+						&& ai[aI - 1].end - day + 1 <= ai[aI - 1].cou
+						)
+						||
+						(
+							aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI - 1].cou > 0
+							&& Math.Min(ai[aI - 1].end, day + ai[aI - 1].cou - 1) + ai[aI - 1].cou < ai[aI].end && ai[aI].end > ai[aI - 1].end
+						)
+						
+						)
+
 					{
 						isGotoRemain = true;
 
@@ -204,11 +281,11 @@ namespace YangPracticeLeetCode.Solved
 						}
 						aI--;
 					}
-
+					
 
 					if (!isGotoRemain &&
-					    (aI < l && day <= ai[aI].end && ai[aI].cou > 0)
-					    )
+				    (aI < l && day <= ai[aI].end && ai[aI].cou > 0)
+				    )
 					{
 						//every day eat 1 apple today and save remain apple to a list, as late as possible to eat
 						eat++;
