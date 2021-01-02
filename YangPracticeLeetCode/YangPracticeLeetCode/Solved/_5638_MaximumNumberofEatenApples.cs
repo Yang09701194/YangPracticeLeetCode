@@ -11,10 +11,15 @@ namespace YangPracticeLeetCode.Solved
 
 		public static void Test()
 		{
-			Solution s = new Solution();
+			Solution_V2_Pass s = new Solution_V2_Pass();
 
 			//Console.WriteLine(s.NumPoints());
 
+
+			Console.WriteLine(s.EatenApples(new int[] { 5,2,3 }, new int[] { 6,9,10 }));
+
+
+			Console.WriteLine(s.EatenApples(new int[] { 2,1,10 }, new int[] { 2,10,1 }));
 
 			Console.WriteLine(s.EatenApples(new int[] { 7, 0, 0, 0, 3, 0, 0, 0, 0, 0 }, new int[] { 10, 0, 0, 0, 3, 0, 0, 0, 0, 0 }));
 			Console.WriteLine(s.EatenApples(new int[] { 1 }, new int[] { 2 }));
@@ -38,11 +43,56 @@ namespace YangPracticeLeetCode.Solved
 
 		}
 
+		/// <summary>
+		/// Sol 4 沒有用到  java  特有的資結  所以找到一個可轉的  work
+		/// </summary>
+		class Solution
+		{
+			public int EatenApples(int[] apples, int[] days)
+			{
+				int n = apples.Length;
+				int[] applesExpiry = new int[n + 20001];
+				int count = 0;
+				int lastDay = n;
+				int latestExpiryPointer = 0;
+
+				for (int currentDay = 0; currentDay < lastDay; currentDay++)
+				{
+					// calculate the expiry of apples received on currentDay and update map
+					if (currentDay < n)
+					{
+						int currentExpiry = days[currentDay] + currentDay;
+						applesExpiry[currentExpiry] += apples[currentDay];
+						if (currentExpiry < latestExpiryPointer) latestExpiryPointer = currentExpiry;
+						// update last day if current expiry is greater
+						if (currentExpiry > lastDay) lastDay = currentExpiry;
+					}
+					while ((latestExpiryPointer <= currentDay ||
+					        applesExpiry[latestExpiryPointer] == 0) &&
+					       latestExpiryPointer < lastDay)
+					{
+						latestExpiryPointer++;
+					}
+					// eat an apple on current day
+					if (applesExpiry[latestExpiryPointer] != 0)
+					{
+						applesExpiry[latestExpiryPointer]--;
+						count++;
+					}
+				}
+				return count;
+			}
+		}
+
+
+
+
+
 
 		//這邊的 Sol 看起來真的像 java 的天下
 		//一堆資結都是 java 特有的  HashMap Priority Queue TreeMap
 		//真的可能要把java也練到刷的自如
-
+		//這邊實在不方便貼java解
 
 		/// <summary>
 		/// 完全自  1390ms  已極  來看別人的
@@ -50,7 +100,7 @@ namespace YangPracticeLeetCode.Solved
 		/// ls.RemoveAt(0)  改成  用 i++ 這邊剛好是一直遞增  就快一倍  50ms vs 19ms 的差距
 		/// 所以RemoveAt 能省掉真的省很多 
 		/// </summary>
-		public class Solution_V2
+		public class Solution_V2_Pass
 		{
 			public int EatenApples(int[] apples, int[] days)
 			{
@@ -88,7 +138,7 @@ namespace YangPracticeLeetCode.Solved
 				List<AppleInfo> ai = new List<AppleInfo>();
 				for (int i = 0; i < apples.Length; i++)
 				{
-					ai.Add(new AppleInfo(i, i + days[i] - 1, apples[i]));
+					ai.Add(new AppleInfo(i, i + days[i] - 1, apples[i], i));
 				}
 
 				int eat = 0;
@@ -120,7 +170,45 @@ namespace YangPracticeLeetCode.Solved
 					if (!(aI < l) && !remains.Any())
 						break;
 
-					if (aI < l && day <= ai[aI].end && ai[aI].cou > 0)
+					bool isGotoRemain = false;
+					if (aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI -1].cou > 0
+						&& ai[aI - 1].end - day + 1 <= ai[aI - 1].cou)
+					{
+						isGotoRemain = true;
+
+						if (!remains.Any())
+						{
+							remains.Add(ai[aI]);
+						}
+						else
+						{
+							for (int i = 0; i < remains.Count; i++)
+							{
+								if (ai[aI].id != remains[i].id)
+								{
+									//put end as late as possible to eat
+									if (ai[aI].end <= remains[i].end)
+									{
+										remains.Insert(i, ai[aI]);
+										break;
+									}
+									if (i == remains.Count - 1)
+									{
+										remains.Add(ai[aI]);
+										break;
+									}
+
+								}
+
+							}
+						}
+						aI--;
+					}
+
+
+					if (!isGotoRemain &&
+					    (aI < l && day <= ai[aI].end && ai[aI].cou > 0)
+					    )
 					{
 						//every day eat 1 apple today and save remain apple to a list, as late as possible to eat
 						eat++;
@@ -136,22 +224,27 @@ namespace YangPracticeLeetCode.Solved
 						{
 							for (int i = 0; i < remains.Count; i++)
 							{
-								//put end as late as possible to eat
-								if (ai[aI].end <= remains[i].end)
+								if (ai[aI].id != remains[i].id)
 								{
-									remains.Insert(i, ai[aI]);
-									break;
-								}
-								if (i == remains.Count - 1)
-								{
-									remains.Add(ai[aI]);
-									break;
+									//put end as late as possible to eat
+									if (ai[aI].end <= remains[i].end)
+									{
+										remains.Insert(i, ai[aI]);
+										break;
+									}
+									if (i == remains.Count - 1)
+									{
+										remains.Add(ai[aI]);
+										break;
+									}
+
 								}
 
 							}
 						}
 
 						aI++;
+
 					}
 					// today no apple , take saved remain
 					else if (remains.Any())
@@ -166,6 +259,10 @@ namespace YangPracticeLeetCode.Solved
 							{
 								aI++;
 							}
+
+							if (isGotoRemain)
+								aI++;
+
 						}
 					}
 					else if(aI < l)
@@ -181,16 +278,18 @@ namespace YangPracticeLeetCode.Solved
 
 			public class AppleInfo
 			{
-				public AppleInfo(int start, int end, int cou)
+				public AppleInfo(int start, int end, int cou, int id)
 				{
 					this.start = start;
 					this.end = end;
 					this.cou = cou;
+					this.id = id;
 				}
 
 				public int start;
 				public int end;
 				public int cou;
+				public int id;
 			}
 
 		}
