@@ -1,0 +1,24 @@
+class Solution(object):
+
+    def stoneGameVII(self, stones):
+
+        tot = sum(stones)
+        save = [[0 for i in range(len(stones)+1) ] for j in range(len(stones) +1)]
+        return self.dp(stones, 0, 1, save, tot)
+    
+    
+    def dp(self, stones, left, right, save, tot):
+    
+        
+        if save[left][right] != 0:
+            return save[left][right]
+    
+        ret = 0
+        if left + right < len(stones):
+            tot_l = tot - stones[left]
+            ret_l = tot_l - self.dp(stones, left+1, right, save, tot_l)
+            tot_r = tot - stones[len(stones)-right]
+            ret_r = tot_r - self.dp(stones, left, right+1, save, tot_r)
+            ret = max(ret_l, ret_r)
+        save[left][right] = ret
+        return ret
