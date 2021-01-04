@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +47,29 @@ namespace YangPracticeLeetCode.Solved
 		}
 
 		/// <summary>
-		/// Sol 4 ¨S¦³¥Î¨ì  java  ¯S¦³ªº¸êµ²  ©Ò¥H§ä¨ì¤@­Ó¥iÂàªº  work
+		/// Sol 4 æ²’æœ‰ç”¨åˆ°  java  ç‰¹æœ‰çš„è³‡çµ  æ‰€ä»¥æ‰¾åˆ°ä¸€å€‹å¯è½‰çš„  work
+		///
+		///
+		/// This is just another way of implementing an ordered map that is sorted by expiry days in increasing order. An array can also be used as a map. We know that the array stores contiguous elements, hence the array indexes can be the expiry days and its value would be the number of apples expiring on that day.
+		/// For example, if applesExpiry is an array that stores the apple expiry information, for a given day i, applesExpiry[i] would store the number of apples expiring on ith day
+		///
+		/// é€™é‚Šæ¯”æˆ‘æƒ³å¾—æ›´ç²¾æº–  æˆ‘æœ‰å¾€é€™å€‹æ–¹å‘ä½†æ˜¯æ²’æœ‰ç›´æ¥é€™æ¨£æƒ³
+		/// æœ€å¾Œä½¿ç”¨çš„æ–¹å¼æ—¥å­é‚Šèµ°é‚Šç´¯ç©è¨ˆç®—  è·Ÿç«è»Šé–‹éå»  è¼‰è²¨ä¸€æ¨£  æ¯å€‹è²¨ç‰©ä¸Šé¢éƒ½æœ‰è¨˜è¼‰ start end cou  æ‰€ä»¥å°±è¦å†è€ƒæ…® order èª°å…ˆæ‹¿å‡ºä¾†ç”¨
+		/// é€™é‚Šçœ‹ä¾†æ˜¯  ç›´æ¥è¨˜éŒ„åœ¨éæœŸæ—¥  ä¸èµ°éç¨‹
+		///
+		///The implementation of an array as a map instead of an ordered map (as in Approach 2) has certain differences,
+		///As we are using an array, we must fix its size.To know the size of the array we must answer this question - For any given problem, what would be the maximum number of days?
+		///For a problem having n days, on nth day, the maximum value of days[n] could be 20000 (2 * 10^{4})20000(2âˆ—10 
+		///4). Thus, we would build a fixed size array applesExpiry of size n + 20000n + 20000.
+		///In the ordered map, we removed the elements where the expiry days had passed the current day.In the case of an array, we could simply increment the pointer to find the next expiry day after the current day.Let's use a pointer latestExpiryPointer for this purpose.
+		///The latestExpiryPointer will always point to the next expiry day after currentDay when a certain number of apples are going to expire.To ensure this condition, in every iteration, the latestExpiryPointer is incremented until latestExpiryPointer is less than or equal to currentDay or if no apples are expiring on a day.
+		///What should be the terminating condition ? In previous approaches, we terminated when the farthest expiry day was reached and the map was empty.Here, we would have to find the maximum expiry day which would be our last day.Let the variable be lastDay and in every iteration, we would update the lastDay to be the maximum value of currentExpiry.
+
+		///The iteration would terminate when currentDay is equal to the lastDay.  The following figure illustrates the idea for apples = [3, 2] and days = [2, 4].
+		///
+		/// é€™æ¨£å­èµ°ä¸‹ä¾†å°±æ˜¯  æ¸…æ¥šç°¡å–®  ä¸ç”¨åƒåŸæœ¬ç«è»Šè²¨ç‰©éšŠåˆ—é‚£ç¨®æ–¹å¼è¦ä¸€ç›´å®¢è£½åŠ æ¢ä»¶
+		/// 
+		/// ç«è»Š  ä¸€å€‹é‡é»æ˜¯è¦æ±ºå®š  ç•¶å¤©çš„å–ä¸€å€‹  å…¶ä»–ä¸Ÿåˆ°æœ€å¾Œ é‚„æ˜¯ç¹¼çºŒç”¨ä¹‹å‰çš„  é‡åˆ°0é‡‰è—¥ç‰¹åˆ¥è™•ç†   å¦‚æœèƒ½é‡åˆ°æ˜¯æœ€å¾Œæ—¥çš„  é‚„è¦çœ‹å‰é¢æœ‰ç”¨åˆ° å…¨éƒ¨ä¸Ÿåˆ°æœ€å¾Œ  å°±èƒ½è¢«æ–°testcaseç ´è§£
 		/// </summary>
 		class Solution
 		{
@@ -92,18 +114,18 @@ namespace YangPracticeLeetCode.Solved
 
 
 
-		//³oÃäªº Sol ¬İ°_¨Ó¯uªº¹³ java ªº¤Ñ¤U
-		//¤@°ï¸êµ²³£¬O java ¯S¦³ªº  HashMap Priority Queue TreeMap
-		//¯uªº¥i¯à­n§âjava¤]½m¨ì¨êªº¦Û¦p
-		//³oÃä¹ê¦b¤£¤è«K¶Kjava¸Ñ
+		//é€™é‚Šçš„ Sol çœ‹èµ·ä¾†çœŸçš„åƒ java çš„å¤©ä¸‹
+		//ä¸€å †è³‡çµéƒ½æ˜¯ java ç‰¹æœ‰çš„  HashMap Priority Queue TreeMap
+		//çœŸçš„å¯èƒ½è¦æŠŠjavaä¹Ÿç·´åˆ°åˆ·çš„è‡ªå¦‚
+		//é€™é‚Šå¯¦åœ¨ä¸æ–¹ä¾¿è²¼javaè§£
 
 		/// <summary>
-		/// §¹¥ş¦Û  1390ms  ¤w·¥  ¨Ó¬İ§O¤Hªº
+		/// å®Œå…¨è‡ª  1390ms  å·²æ¥µ  ä¾†çœ‹åˆ¥äººçš„
 		///
-		/// ls.RemoveAt(0)  §ï¦¨  ¥Î i++ ³oÃä­è¦n¬O¤@ª½»¼¼W  ´N§Ö¤@­¿  50ms vs 19ms ªº®t¶Z
-		/// ©Ò¥HRemoveAt ¯à¬Ù±¼¯uªº¬Ù«Ü¦h 
+		/// ls.RemoveAt(0)  æ”¹æˆ  ç”¨ i++ é€™é‚Šå‰›å¥½æ˜¯ä¸€ç›´éå¢  å°±å¿«ä¸€å€  50ms vs 19ms çš„å·®è·
+		/// æ‰€ä»¥RemoveAt èƒ½çœæ‰çœŸçš„çœå¾ˆå¤š 
 		///
-		/// «á¨Ó¤@¬q®É¶¡¦A´ú
+		/// å¾Œä¾†ä¸€æ®µæ™‚é–“å†æ¸¬
 		/// Runtime: 456 ms, faster than 68.25% of C# online submissions for Maximum Number of Eaten Apples.
 		//Memory Usage: 44.8 MB, less than 7.94% of C# online submissions for Maximum Number of Eaten Apples.
 		///
@@ -181,9 +203,9 @@ namespace YangPracticeLeetCode.Solved
 						break;
 
 
-					// case 6 11    6 11 ¥i¥H¼µ¨ìmax day ¤]´N¬Oµ²§À  ©Ò¥H¦pªG¦b«e­±ªº¤é¤l¤w¸g¹J¨ì­n¨Ï¥Î   ­nÁ×§K  Á×§Kªº¤èªk¬O   ³o¸Ì°²³]  «e­±¦³¤@¨Ç¦h¾lªºÄ«ªG ¤w¸g¼µ¨ì¶W¹L6¤Ñ  °²³] ¤w¸g¼µ¨ì²Ä8¤Ñ  ¤~¥Î¨ì6ªº®w¦s  6Á×§K¨Ï¥Î  ´N¥i¥H®³ 7 8 ªº¨Ó¨Ï¥Î ©Ò¥H 7 8 ªº¦pªG¦³¶q¥i¥H¥Î  ´Nª½±µ¨Ï¥Î  «O¯dmax day ªºÄ«ªG¨ì³Ì«á
-					// ¦pªG©¹«á§ä¤£¨ì¦Xªkªº  ´N´_­ì¨Ï¥Î¡@6
-					//¸õ¹Lmax ©¹«á¨Ï¥Îªº§Ş¥©«Ü¦³½ì ¥ı§ä¨ì¤U¤@­Ó aI  µM«áday°h¦^  ¤U¦¸¦^°é´N·|¥Î¨Ì¼Ë¥Ø«eªºday + ¤U¤@­ÓaI
+					// case 6 11    6 11 å¯ä»¥æ’åˆ°max day ä¹Ÿå°±æ˜¯çµå°¾  æ‰€ä»¥å¦‚æœåœ¨å‰é¢çš„æ—¥å­å·²ç¶“é‡åˆ°è¦ä½¿ç”¨   è¦é¿å…  é¿å…çš„æ–¹æ³•æ˜¯   é€™è£¡å‡è¨­  å‰é¢æœ‰ä¸€äº›å¤šé¤˜çš„è˜‹æœ å·²ç¶“æ’åˆ°è¶…é6å¤©  å‡è¨­ å·²ç¶“æ’åˆ°ç¬¬8å¤©  æ‰ç”¨åˆ°6çš„åº«å­˜  6é¿å…ä½¿ç”¨  å°±å¯ä»¥æ‹¿ 7 8 çš„ä¾†ä½¿ç”¨ æ‰€ä»¥ 7 8 çš„å¦‚æœæœ‰é‡å¯ä»¥ç”¨  å°±ç›´æ¥ä½¿ç”¨  ä¿ç•™max day çš„è˜‹æœåˆ°æœ€å¾Œ
+					// å¦‚æœå¾€å¾Œæ‰¾ä¸åˆ°åˆæ³•çš„  å°±å¾©åŸä½¿ç”¨ã€€6
+					//è·³émax å¾€å¾Œä½¿ç”¨çš„æŠ€å·§å¾ˆæœ‰è¶£ å…ˆæ‰¾åˆ°ä¸‹ä¸€å€‹ aI  ç„¶å¾Œdayé€€å›  ä¸‹æ¬¡å›åœˆå°±æœƒç”¨ä¾æ¨£ç›®å‰çš„day + ä¸‹ä¸€å€‹aI
 					if (
 						(
 							aI < l  && aI > 0 &&
@@ -239,19 +261,19 @@ namespace YangPracticeLeetCode.Solved
 							aI = oriAi;
 						}
 					}
-					//¤@¯ë¬O  ¥Ø«eªº¥ı¨ú¤@­Ó  ³Ñ¤Uªº¥á¨ì³Ì«á
-					//³o¸Ì¬O¯S®í±¡ªp  ª½±µ§â¥Ø«eªº¥á¶iremain  Ä~Äò¦Y¤W¤@­Óªº
+					//ä¸€èˆ¬æ˜¯  ç›®å‰çš„å…ˆå–ä¸€å€‹  å‰©ä¸‹çš„ä¸Ÿåˆ°æœ€å¾Œ
+					//é€™è£¡æ˜¯ç‰¹æ®Šæƒ…æ³  ç›´æ¥æŠŠç›®å‰çš„ä¸Ÿé€²remain  ç¹¼çºŒåƒä¸Šä¸€å€‹çš„
 					bool isGotoRemain = false;
 					if (
-						//case 523  ´N¬O5+2+3³sÄò¨C­Ó¥ş³¡¥Î§¹¦A´«¤U¤@­Ó
-						//¯S¼x¬O  «e¤@­Óªºcou ¥i¥H¼µ§¹«e¤@­Óªºend
+						//case 523  å°±æ˜¯5+2+3é€£çºŒæ¯å€‹å…¨éƒ¨ç”¨å®Œå†æ›ä¸‹ä¸€å€‹
+						//ç‰¹å¾µæ˜¯  å‰ä¸€å€‹çš„cou å¯ä»¥æ’å®Œå‰ä¸€å€‹çš„end
 						(
 						aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI -1].cou > 0
 						//#
 						&& ai[aI - 1].end - day + 1 <= ai[aI - 1].cou
 						)
 						||
-						//¤£¯à§¹¥ş¼µ¨ìend  ¦ı¬Oday+«e¤@­Ócou < ¥Ø«eªºend ¥B «eend < ¥Ø«eend
+						//ä¸èƒ½å®Œå…¨æ’åˆ°end  ä½†æ˜¯day+å‰ä¸€å€‹cou < ç›®å‰çš„end ä¸” å‰end < ç›®å‰end
 						(
 							aI < l && aI >= 1 && day <= ai[aI].end && ai[aI].end - day >= 1 && ai[aI].cou > 0 && ai[aI - 1].cou > 0
 							//#
