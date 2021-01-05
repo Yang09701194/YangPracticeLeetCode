@@ -3,6 +3,12 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
+// Sol 1~3 是 java 特殊解    先讀sol就好  之後再練
+//
+
+// Sol 1 精闢名句
+//If we could maintain expiry days after the current day in ascending order in some kind of data structure, we could get the next expiry day in constant time. One way to implement this is by using a min-heap i.e priority queue.
+
 
 
 //Runtime: 4 ms, faster than 100.00% of Java online submissions for Maximum Number of Eaten Apples.
@@ -107,6 +113,16 @@ class Solution_V2 {
 
 //Runtime: 67 ms, faster than 91.67% of Java online submissions for Maximum Number of Eaten Apples.
 //Memory Usage: 44.8 MB, less than 16.67% of Java online submissions for Maximum Number of Eaten Apples.
+
+//一個關鍵  管他三七二十一  先存起來   然後再取   存和取的動作是分開的  存完就套公式取
+//所以不會像我原作法   存的時候就在想先取一個還是全丟   就簡化許多
+//而且有了 Min Heap 這種 priority 的利器 完全不用再多做日期排序和時間複雜度思考
+//像C# 我還要自己寫一個for 探測 往最接近自己的上界放  等於再花時間自己寫排序
+//
+//
+
+
+
 class Solution_V1 {
     public int eatenApples(int[] apples, int[] days) {
         Map<Integer, Integer> applesExpiry = new HashMap<>();

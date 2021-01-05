@@ -70,6 +70,12 @@ namespace YangPracticeLeetCode.Solved
 		/// 這樣子走下來就是  清楚簡單  不用像原本火車貨物隊列那種方式要一直客製加條件
 		/// 
 		/// 火車  一個重點是要決定  當天的取一個  其他丟到最後 還是繼續用之前的  遇到0釉藥特別處理   如果能遇到是最後日的  還要看前面有用到 全部丟到最後  就能被新testcase破解
+		/// Complexity Analysis
+
+		Time Complexity : O(maxExpiryDay), where maxExpiryDay is the maximum value among all expiry days.The iteration continues until currentDay is equal to lastDay.The value of lastDay is equal to maximum of all expiry days, given by max(currentExpiry).
+
+		Space Complexity: O(n), as we an array of size n+20001, the space complexity would be roughly equal to O(n).
+
 		/// </summary>
 		class Solution
 		{
