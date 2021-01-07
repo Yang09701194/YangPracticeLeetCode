@@ -132,6 +132,7 @@
     <Compile Include="Solved\_350_IntersectionofTwoArraysII.cs" />
     <Compile Include="Solved\_5637_DetermineifStringHalvesAreAlike.cs" />
     <Compile Include="Solved\_5638_MaximumNumberofEatenApples.cs" />
+    <Compile Include="Solved\_348_DesignTicTacToe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

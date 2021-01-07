@@ -21,7 +21,9 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			// when transfer answer  ProblemRecord.List();
 
-			_5638_MaximumNumberofEatenApples.Test();
+			_348_DesignTicTacToe.Test();
+
+			//_5638_MaximumNumberofEatenApples.Test();
 
 			//_5637_DetermineifStringHalvesAreAlike.Test();
 
@@ -37,7 +39,7 @@ namespace YangPracticeLeetCode
 			//_5630_MaximumErasureValue.Test();	
 
 			//_5629_ReformatPhoneNumber.Test();
-			
+
 			//_5627_StoneGameVII.Test();
 
 			//_5626_PartitioningIntoMinimumNumberOfDeciBinaryNumbers.Test();
