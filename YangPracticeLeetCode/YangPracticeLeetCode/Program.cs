@@ -21,7 +21,9 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			// when transfer answer  ProblemRecord.List();
 
-			_348_DesignTicTacToe.Test();
+			_347_TopKFrequentElements.Test();
+
+			//_348_DesignTicTacToe.Test();
 
 			//_5638_MaximumNumberofEatenApples.Test();
 

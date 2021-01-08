@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -133,6 +133,7 @@
     <Compile Include="Solved\_5637_DetermineifStringHalvesAreAlike.cs" />
     <Compile Include="Solved\_5638_MaximumNumberofEatenApples.cs" />
     <Compile Include="Solved\_348_DesignTicTacToe.cs" />
+    <Compile Include="Solved\_347_TopKFrequentElements.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

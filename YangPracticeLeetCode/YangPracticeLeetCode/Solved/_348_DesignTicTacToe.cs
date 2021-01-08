@@ -126,7 +126,7 @@ namespace YangPracticeLeetCode.Solved
 			private int size = 0;
 
 			/** Initialize your data structure here. */
-			public TicTacToe(int n)
+			public TicTacToe_V2(int n)
 			{
 				board = new int[n, n];
 				size = n;
