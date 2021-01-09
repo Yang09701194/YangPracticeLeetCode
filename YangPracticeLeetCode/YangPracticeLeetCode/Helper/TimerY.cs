@@ -19,10 +19,11 @@ namespace YangPracticeLeetCode.Helper
 			return new TimerY();
 		}
 
-		public string TimingMs()
+		public string TimingMs(bool isPrint = false)
 		{
 			string ms = DateTime.Now.Subtract(_start).TotalMilliseconds.ToString();
-			Console.WriteLine(ms);
+			if(isPrint)
+				Console.WriteLine(ms);
 			return ms;
 		}
 
