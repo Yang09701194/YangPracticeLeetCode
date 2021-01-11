@@ -101,14 +101,19 @@ namespace YangPracticeLeetCode.Solved
 			//  根號一下去  馬上就小很多了   就快很多  n^1/2  
 			//  所以 O用  k  freq 決定   那就真的小很多  也快很多
 			//  所以 O k freq  比 O n 一定快很多
-			//
+			
 
 			 
 		}
 
+		
+
+
+
+
 
 		/// <summary>
-		/// 
+		/// O (Min k , freq)^2  ,  小於  O n^(1/2)
 		/// </summary>
 		public class Solution_RemoveMax
 		{
@@ -166,7 +171,9 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
-
+		/// <summary>
+		/// O n
+		/// </summary>
 		public class Solution_BucketSort
 		{
 			public int[] TopKFrequent(int[] nums, int k)

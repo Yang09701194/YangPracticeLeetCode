@@ -168,7 +168,8 @@ class Solution_V2 {
 //
 // This would give total time complexity as O(maxExpiryDay log(maxExpiryDay)).
 //
-// Space Complexity: O(n), as we build the queue and map, in the worst case the maximum elements in these lists would be n.
+// Space Complexity: O(n), as we build the queue and map, in the worst case the maximum elements
+// in these *lists would be n.
 class Solution_V1 {
     public int eatenApples(int[] apples, int[] days) {
         Map<Integer, Integer> applesExpiry = new HashMap<>();
