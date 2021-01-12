@@ -52,6 +52,7 @@
     <Compile Include="OtherProblem\MultipleOf3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solved\Permutation.cs" />
     <Compile Include="Solved\_1002_FindCommonCharacters.cs" />
     <Compile Include="Solved\_1003_CheckIfWordIsValidAfterSubstitutions.cs" />
     <Compile Include="Solved\_1013_PartitionArrayIntoThreePartsWithEqualSum.cs" />

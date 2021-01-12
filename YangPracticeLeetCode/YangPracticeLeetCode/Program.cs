@@ -21,6 +21,8 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			// when transfer answer  ProblemRecord.List();
 
+			//Permutation.Run();
+
 			_347_TopKFrequentElements.Test();
 
 			//_348_DesignTicTacToe.Test();
