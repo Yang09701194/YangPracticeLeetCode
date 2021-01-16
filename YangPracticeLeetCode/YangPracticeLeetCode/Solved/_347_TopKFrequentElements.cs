@@ -106,7 +106,17 @@ namespace YangPracticeLeetCode.Solved
 			 
 		}
 
-		
+		//這裡 sol 又有 PriorQ 了  而且解釋很有意思  所以在java 再開這題
+		//程式碼到  java  看
+		//
+		//Sol 1 主要是因為 後面 heap PQ 只要保持在k個 多的heapify完 就pop掉 所以做n次 isnert  之後  是  nlogk
+		// 
+		// Sol2  Quick Select   
+		// Quick Select 就是用 Quick Sort 的方式來Select  第 k 大/小的   理解Quick Sort之後  就能直接變化為Quick Select    詳細分析已經加到  DSAlgo
+		// 
+		//
+		//You are not using Hoare's partition here - you are using Lomuto's. Hoare's partition fails with duplicates, Lomuto's doesn't.
+
 
 
 

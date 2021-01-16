@@ -17,9 +17,33 @@ public class _347_TopKFrequentElements {
     //
     //// Quickselect is a textbook algorthm typically used to solve the problems "find kth something": kth smallest, kth largest, kth most frequent, kth less frequent, etc. Like quicksort, quickselect was developed by Tony Hoare, and also known as Hoare's selection algorithm.
     ////
-    //// It has O(N) average time complexity and widely used in practice. It worth to note that
+    //// !!! It has O(N) average time complexity and widely used in practice. It worth to note that
     // its worth case time complexity is O(N^2)
     ////, although the probability of this worst-case is negligible.
+    //
+    // Quick Sort 研究詳見 DSAlgo
+    // 研究過  Hoare  Lomuto 之後   Sol2的全部技術差異細節都有涵蓋到
+    //
+    // 這邊Sol 2 在 partition 的說明又對不上  已發issue  明明做的是 Lomuto  卻說是 Hoare
+    //
+    // 基本上   懂了　QuickSelect 之後  程式碼就是  直接理解  就是這樣做  沒錯
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Further Discussion: Could We Do Worst-Case Linear Time?
+    // In theory, we could, the algorithm is called Median of Medians.
+    //
+    // This method is never used in practice because of two drawbacks:
+    //
+    // It's outperformer. Yes, it works in a linear time αN, but the constant α is so large that in practice it often works even slower than N^2
+    //
+    // It doesn't work with duplicates.
+    // https://en.wikipedia.org/wiki/Median_of_medians
+
     class Solution_Sol2 {
         int[] unique;
         Map<Integer, Integer> count;
