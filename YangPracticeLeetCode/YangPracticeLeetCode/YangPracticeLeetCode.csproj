@@ -135,6 +135,8 @@
     <Compile Include="Solved\_5638_MaximumNumberofEatenApples.cs" />
     <Compile Include="Solved\_348_DesignTicTacToe.cs" />
     <Compile Include="Solved\_347_TopKFrequentElements.cs" />
+    <Compile Include="Solved\_5653_NumberOfRectanglesThatCanFormTheLargestSquare.cs" />
+    <Compile Include="Solved\_5243_TuplewithSameProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
