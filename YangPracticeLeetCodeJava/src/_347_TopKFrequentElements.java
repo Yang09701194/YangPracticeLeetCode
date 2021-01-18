@@ -28,10 +28,14 @@ public class _347_TopKFrequentElements {
     //
     // 基本上   懂了　QuickSelect 之後  程式碼就是  直接理解  就是這樣做  沒錯
     //
+    // Time complexity: O(N) in the average case, O(N^2) in the worst case. T(N) = T(N/2)+N, that
+    // results in  O(N) time complexity. That's the case of random pivots.
     //
+    // In the worst-case of constantly bad chosen pivots, the problem is not divided by half at
+    // each step, it becomes just one element less, that leads to O(N^2) time complexity. That's
+    // for example, if at each step you choose the pivot not randomly, but take the rightmost element. For the random pivot choice the probability of having such a worst-case is negligibly small.
     //
-    //
-    //
+    // Space complexity: up to O(N) to store hash map and array of unique elements.
     //
     //
     // Further Discussion: Could We Do Worst-Case Linear Time?
