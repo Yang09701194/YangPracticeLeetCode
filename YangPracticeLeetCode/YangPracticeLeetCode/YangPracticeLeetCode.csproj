@@ -137,6 +137,8 @@
     <Compile Include="Solved\_347_TopKFrequentElements.cs" />
     <Compile Include="Solved\_5653_NumberOfRectanglesThatCanFormTheLargestSquare.cs" />
     <Compile Include="Solved\_5243_TuplewithSameProduct.cs" />
+    <Compile Include="Solved\_344_ReverseString.cs" />
+    <Compile Include="Solved\_341_FlattenNestedListIterator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

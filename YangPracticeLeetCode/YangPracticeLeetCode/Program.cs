@@ -21,9 +21,17 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			// when transfer answer  ProblemRecord.List();
 
+			_341_FlattenNestedListIterator.Test();
+
+			//_344_ReverseString.Test();
+
+			//_5243_TuplewithSameProduct.Test();
+
+			//_5653_NumberOfRectanglesThatCanFormTheLargestSquare.Test();
+
 			//Permutation.Run();
 
-			_347_TopKFrequentElements.Test();
+			//_347_TopKFrequentElements.Test();
 
 			//_348_DesignTicTacToe.Test();
 

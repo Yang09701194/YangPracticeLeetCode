@@ -17,15 +17,6 @@ namespace YangPracticeLeetCode.Solved
 			//Console.WriteLine(s.NumPoints());
 
 			//Console.WriteLine(s.SpecialArray(new int[] { 3, 5 }));
-
-		
-
-
-			//        O nlogn (Order)  O n  (Bucket)
-			//  筆   時間
-			//  
-			//  後面反超
-			//
 			
 			int[] testCases = new int[]
 			{
@@ -114,11 +105,7 @@ namespace YangPracticeLeetCode.Solved
 		// Sol2  Quick Select   
 		// Quick Select 就是用 Quick Sort 的方式來Select  第 k 大/小的   理解Quick Sort之後  就能直接變化為Quick Select    詳細分析已經加到  DSAlgo
 		// 
-		//
-		//You are not using Hoare's partition here - you are using Lomuto's. Hoare's partition fails with duplicates, Lomuto's doesn't.
-
-
-
+		// 這題的Sol 詳細重要分析  見 java
 
 
 
