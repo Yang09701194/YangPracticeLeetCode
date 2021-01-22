@@ -94,6 +94,76 @@ namespace YangPracticeLeetCode.Solved
 		}
 
 
+		//Sol 4 跳過  雖然C# 確實是有Iterator
+		//This approach works best in Java but isn't well suited to other languages. Have a look at Approach 5 if you're looking for an elegant Python and JavaScript approach.
+
+
+		/// <summary>
+		/// time space 看起來不太算有什麼特別
+		///
+		/// 另一個人寫的同概念 Sol 3 但是多搭配一個 List  就很傑出了
+		///
+		/// 
+		/// Runtime: 240 ms, faster than 40.35% of C# online submissions for Flatten Nested List Iterator.
+		/// Memory Usage: 33.6 MB, less than 11.11% of C# online submissions for Flatten Nested List Iterator.
+		/// </summary>
+		public class NestedIterator_Sol3
+		{
+			private Stack<IList<NestedInteger>> listStack = new Stack<IList<NestedInteger>>();
+			private Stack<int> indexStack = new Stack<int>();
+
+			public NestedIterator_Sol3(IList<NestedInteger> nestedList)
+			{
+				listStack.Push(nestedList);
+				indexStack.Push(0);
+			}
+
+
+			public int Next()
+			{
+				if (!HasNext()) throw new Exception();
+				int currentPosition = indexStack.Pop();
+				indexStack.Push(currentPosition + 1);
+				return listStack.Peek()[currentPosition].GetInteger();
+			}
+
+
+
+			public bool HasNext()
+			{
+				MakeStackTopAnint();
+				return indexStack.Any();
+			}
+
+
+			private void MakeStackTopAnint()
+			{
+
+				while (indexStack.Any())
+				{
+
+					// If the top list is used up, pop it and its index.
+					if (indexStack.Peek() >= listStack.Peek().Count())
+					{
+						indexStack.Pop();
+						listStack.Pop();
+						continue;
+					}
+
+					// Otherwise, if it's already an integer, we don't need to do anything.
+					if (listStack.Peek()[indexStack.Peek()].IsInteger())
+					{
+						break;
+					}
+
+					// Otherwise, it must be a list. We need to update the previous index
+					// and then.Add the new list with an index of 0.
+					listStack.Push(listStack.Peek()[indexStack.Peek()].GetList());
+					indexStack.Push(indexStack.Pop() + 1);
+					indexStack.Push(0);
+				}
+			}
+		}
 
 
 		/// <summary>
@@ -114,7 +184,11 @@ namespace YangPracticeLeetCode.Solved
 		/// 然後 currList改裝  目前完整list[idx]的List  idx設定為這個子list的開頭 0
 		/// 然後子list一直跑  跑到idx超過子list
 		/// 就把原本收起來的listStack放出來 繼續上面的過程
-		/// 
+		///
+		/// 這也是 Sol3 的想法   但是 time space 就很優秀
+		/// 明明就一樣的做法   為何能特別快  研究一下
+		/// Runtime: 224 ms, faster than 94.15% of C# online submissions for Flatten Nested List Iterator.
+		/// Memory Usage: 32.9 MB, less than 84.80% of C# online submissions for Flatten Nested List Iterator.
 		/// 
 		/// </summary>
 		public class NestedIterator
