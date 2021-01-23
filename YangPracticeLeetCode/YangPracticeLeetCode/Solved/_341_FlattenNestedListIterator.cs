@@ -22,6 +22,16 @@ namespace YangPracticeLeetCode.Solved
 				{
 					new NestedIntegerImpl(null, 2),
 					new NestedIntegerImpl(null, 3),
+					new NestedIntegerImpl(new List<NestedInteger>()
+					{
+						new NestedIntegerImpl(null, 31),
+						new NestedIntegerImpl(null, 32),
+						new NestedIntegerImpl(new List<NestedInteger>()
+						{
+							new NestedIntegerImpl(null, 311),
+							new NestedIntegerImpl(null, 312),
+						}, null),
+					}, null),
 				}, null),
 				new NestedIntegerImpl(null, 4),
 				new NestedIntegerImpl(new List<NestedInteger>()
@@ -31,7 +41,22 @@ namespace YangPracticeLeetCode.Solved
 				}, null),
 			};
 			NestedIterator it = new NestedIterator(ls);
-			while (it.HasNext())
+
+			List<NestedInteger> ls2 = new List<NestedInteger>()
+			{
+				new NestedIntegerImpl(null, 1),
+				new NestedIntegerImpl(new List<NestedInteger>()
+				{
+					new NestedIntegerImpl(null, 4),
+					new NestedIntegerImpl(new List<NestedInteger>()
+					{
+						new NestedIntegerImpl(null, 6),
+					}, null),
+				}, null),
+			};
+			NestedIterator_Sol2 it2 = new NestedIterator_Sol2(ls);
+
+			while (it2.HasNext())
 			{
 				Console.WriteLine(it.Next());
 			}
@@ -97,15 +122,52 @@ namespace YangPracticeLeetCode.Solved
 		//Sol 4 跳過  雖然C# 確實是有Iterator
 		//This approach works best in Java but isn't well suited to other languages. Have a look at Approach 5 if you're looking for an elegant Python and JavaScript approach.
 
-
 		/// <summary>
 		/// time space 看起來不太算有什麼特別
 		///
 		/// 另一個人寫的同概念 Sol 3 但是多搭配一個 List  就很傑出了
 		///
+		/// 直接觀察應該主要差在  Sol3 的 getList index++ 要透過 stack push pop 傳遞
+		/// 
+		/// 直接用一個list  就直接++  應該就差在這
 		/// 
 		/// Runtime: 240 ms, faster than 40.35% of C# online submissions for Flatten Nested List Iterator.
 		/// Memory Usage: 33.6 MB, less than 11.11% of C# online submissions for Flatten Nested List Iterator.
+		///
+		///
+		/// Intuition
+		/// 
+		/// Reversing the lists to put them onto the stack can be an expensive operation, and it turns out it isn't necessary.
+		/// 
+		/// Instead of pushing every item of a sub-list onto the stack, we can instead associate an index pointer with each sub-list, that keeps track of how far along that sub-list we are. Adding a new sub-list to the stack now becomes an O(1)O(1) operation instead of a O(length of sublist)O(lengthofsublist) one.
+		///
+		/// The total time complexity across all method calls for using up the entire iterator remains the same, but work is only done when it's necessary, thus improving performance when we only use part of the iterator. This is a desirable property for an iterator.
+		/// 
+		/// Algorithm
+		/// 
+		/// This approach can be implemented as either one stack of pairs/ tuples, or two stacks with one for NestedIntegers and the other for indexes. The best decision for this is language-dependent. I tried both for the Java and found that attempting to put Pair objects onto a single stack doesn't work well because updating an index count requires popping and then reconstructing the entire Pair due to immutability (alternatives such as using.Length-2 Listss as pairs are possible, but I don't think ideal). Using two stacks is cleaner.
+		///
+		/// Complexity Analysis
+		/// 
+		/// Let NN be the total number of integers within the nested list, LL be the total number of lists within the nested list, and DD be the maximum nesting depth (maximum number of lists inside each other).
+		/// 
+		/// Time complexity:
+		/// 
+		/// Constructor: O(1).
+		/// 
+		/// Pushing a list onto a stack is by reference in all the programming languages we're using here. This means that instead of creating a new list, some information about how to get to the existing list is put onto the stack. The list is not traversed, as it doesn't need reversing this time, and we're not pushing the items on one-by-one. This is, therefore, an O(1)O(1) operation.
+		/// 
+		/// makeStackTopAnInteger() / next() / hasNext(): O(L/N) or O(1).
+		/// 
+		/// Same as Approach 2.
+		/// 
+		/// Space complexity : O(D).
+		/// 
+		/// At any given time, the stack contains only one nestedList reference for each level. This is unlike the previous approach, wherein the worst case we need to put almost all elements onto the stack.
+		/// 
+		/// Because there's one reference on the stack at each level, the worst case is when we're looking at the deepest leveled list, giving a space complexity is O(D)O(D).
+		///
+		/// 
 		/// </summary>
 		public class NestedIterator_Sol3
 		{
@@ -178,7 +240,7 @@ namespace YangPracticeLeetCode.Solved
 		///  
 		/// 非常巧妙  直接看程式碼沒辦法完全全懂
 		/// 跑了之後才看出幾個新的地方:
-		/// listStack 跟 idxStack 只有一層使用
+		/// listStack 跟 idxStack 隨著iterator到達的地方的內嵌層數 對應增加  看sol3 gif秒懂
 		/// 使用時機在於  遇到元素是 list  (非list是int就直接取繼續前進
 		/// 就把完整list的currList 先藏到 listStack   完整list的idx也收到idxStack
 		/// 然後 currList改裝  目前完整list[idx]的List  idx設定為這個子list的開頭 0
@@ -248,11 +310,77 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
-		/**
-		 * Your NestedIterator will be called like this:
-		 * NestedIterator i = new NestedIterator(nestedList);
-		 * while (i.HasNext()) v[f()] = i.Next();
-		 */
+		//*
+		// * Your NestedIterator will be called like this:
+		// * NestedIterator i = new NestedIterator(nestedList);
+		// * while (i.HasNext()) v[f()] = i.Next();
+
+
+
+
+		/// <summary>
+		/// Runtime: 232 ms, faster than 76.47% of C# online submissions for Flatten Nested List Iterator.
+		/// Memory Usage: 33.9 MB, less than 10.59% of C# online submissions for Flatten Nested List Iterator
+		///
+		/// 實際上是有點小奇怪   算很快  比 sol3 快
+		/// 以文字解釋來說  感覺 sol3 會比 sol2快   不過也有分析原因註解了
+		///
+		/// 所以以這邊來說  ls reverse後  一直 pop   會比index 一直 push pop 快
+		///
+		/// 
+		/// 
+		/// </summary>
+		public class NestedIterator_Sol2
+		{
+
+			// In Java, the Stack class is considered deprecated. Best practice is to use
+			// a Stack instead. We'll use.Push() for push, and.Pop() for pop.
+			private Stack<NestedInteger> stack;
+
+			public NestedIterator_Sol2(IList<NestedInteger> nestedList)
+			{
+				// The constructor puts them on in the order we require. No need to reverse.
+
+				//這裡因為是 java stack 用Deque  所以 java new完 是順序
+				//C# new 完  因為他是for push 會變逆序
+				//所以要先逆序再丟進去  過程再逆  會變會順序
+				stack = new Stack<NestedInteger>(nestedList.Reverse());
+			}
+
+			public int Next()
+			{
+				// As per java specs, throw an exception if there's no elements left.
+				if (!HasNext()) throw new Exception();
+				// hasNext ensures the stack top is now an integer. Pop and return
+				// this integer.
+				return stack.Pop().GetInteger();
+			}
+
+			public bool HasNext()
+			{
+				// Check if there are integers left by getting one onto the top of stack.
+				makeStackTopAnint();
+				// If there are any integers remaining, one will be on the top of the stack,
+				// and therefore the stack can't possibly be empty.
+				return stack.Any();
+			}
+
+
+			private void makeStackTopAnint()
+			{
+				// While there are items remaining on the stack and the front of 
+				// stack is a list (i.e. not integer), keep unpacking.
+				while (stack.Any() && !stack.Peek().IsInteger())
+				{
+					// Put the NestedIntegers onto the stack in reverse order.
+					IList<NestedInteger> nestedList = stack.Pop().GetList();
+					for (int i = nestedList.Count() - 1; i >= 0; i--)
+					{
+						stack.Push(nestedList[i]);
+					}
+				}
+			}
+		}
 
 
 		/// <summary>
