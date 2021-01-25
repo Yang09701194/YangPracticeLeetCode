@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace YangPracticeLeetCode.Solved
 {
 	public class _341_FlattenNestedListIterator
 	{
-		//  ³o½g¦³Iterator pattern ªº«D±`¸Ô²Ó¸ÑÄÀ
+		//  é€™ç¯‡æœ‰Iterator pattern çš„éå¸¸è©³ç´°è§£é‡‹
 		public static void Test()
 		{
 			Solution s = new Solution();
@@ -54,11 +54,12 @@ namespace YangPracticeLeetCode.Solved
 					}, null),
 				}, null),
 			};
-			NestedIterator_Sol2 it2 = new NestedIterator_Sol2(ls);
+			//NestedIterator_Sol2 it2 = new NestedIterator_Sol2(ls);
+			NestedIterator_Sol5 it2 = new NestedIterator_Sol5(ls);
 
 			while (it2.HasNext())
 			{
-				Console.WriteLine(it.Next());
+				Console.WriteLine(it2.Next());
 			}
 
 			//Console.WriteLine(s.SpecialArray(new int[] { 3, 5 }));
@@ -89,7 +90,7 @@ namespace YangPracticeLeetCode.Solved
 
 
 		/// <summary>
-		/// ¦Û¤v´ú¸Õ¥Î¼gªº
+		/// è‡ªå·±æ¸¬è©¦ç”¨å¯«çš„
 		/// </summary>
 		public class NestedIntegerImpl : NestedInteger
 		{
@@ -118,18 +119,103 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
+		/// <summary>
+		/// Runtime: 280 ms, faster than 25.00% of C# online submissions for Flatten Nested List Iterator.
+		///Memory Usage: 32.9 MB, less than 98.17% of C# online submissions for Flatten Nested List Iterator.
+		///
+		/// é€Ÿåº¦çœ‹èµ·ä¾†ä¸ç®—å¿«   yield C# çœ‹ä¾†åªæ”¯æ´  yield reutrn å–®å€¼   å›å‚³å‹åˆ¥List
+		/// æ²’æœ‰ yield return List å›å‚³å‹åˆ¥List  çš„èªæ³•
+		///
+		/// not all languages that support yield also support yield from. For example, C# has yield, but no yield from equivalent. JavaScript supports it, but instead calls it yield*.
+		///
+		/// æœ‰ä¸€å€‹å¾ˆç°¡å–® ä½†ä¸æ˜“æƒ³åˆ°çš„æ›¿ä»£æ–¹æ¡ˆ
+		/// https://stackoverflow.com/a/22912410/4573839
+		/// å°±æ˜¯  å†åŠ ä¸€å±¤ foreach  å°±æœƒè®Šå–®å€‹ å°±å¯ä»¥  yield  å…¨éƒ¨
+		/// 
+		/// Let N be the total number of integers within the nested list, LL be the total number of lists within the nested list, and D be the maximum nesting depth (maximum number of lists inside each other).
+		/// 
+		/// Time complexity:
+		/// 
+		/// Constructor: O(1).
+		/// 
+		/// In the constructor, we only create a generator object. Simply creating a generator object doesn't invoke any code in the generator function itself (only calls to next do).
+		/// 
+		/// Because the time taken to create the generator doesn't vary with the size of the input, the time complexity is O(1).
+		/// 
+		/// next() / hasNext(): O(L/N) or O(1).
+		/// 
+		/// Same as approaches 2, 3, and 4.
+		/// 
+		/// Space complexity : O(D).
+		/// 
+		/// We recursively call _int_generator within itself for nested lists. Therefore, the runtime stack uses memory proportional to the current depth of the list. Seeing as the largest depth is D, the space complexity is O(D).
+		/// 
+		/// </summary>
+		public class NestedIterator_Sol5
+		{
 
-		//Sol 4 ¸õ¹L  ÁöµMC# ½T¹ê¬O¦³Iterator
+			// In Java, the Stack class is considered deprecated. Best practice is to use
+			// a Stack instead. We'll use.Push() for push, and.Pop() for pop.
+
+
+			private IEnumerator<int> iterator = null;
+			public NestedIterator_Sol5(IList<NestedInteger> nestedList)
+			{
+				var list = IntIterator(nestedList);
+				iterator = list.GetEnumerator();
+			}
+
+			public IEnumerable<int> IntIterator(IList<NestedInteger> nestedList)
+			{
+				foreach (var n in nestedList)
+				{
+					if (n.IsInteger())
+					{
+						yield return n.GetInteger();
+					}
+					else
+					{
+						foreach (var nI in IntIterator(n.GetList()))
+						{
+							yield return nI;
+						}
+					}
+				}
+			}
+
+			public int Next()
+			{
+				// As per java specs, throw an exception if there's no elements left.
+				//if (!HasNext()) throw new Exception();
+				// hasNext ensures the stack top is now an integer. Pop and return
+				// this integer.
+				return iterator.Current;
+			}
+
+			public bool HasNext()
+			{
+				return iterator.MoveNext();
+			}
+			
+
+
+		}
+
+
+
+
+
+		//Sol 4 è·³é  é›–ç„¶C# ç¢ºå¯¦æ˜¯æœ‰Iterator
 		//This approach works best in Java but isn't well suited to other languages. Have a look at Approach 5 if you're looking for an elegant Python and JavaScript approach.
 
 		/// <summary>
-		/// time space ¬İ°_¨Ó¤£¤Óºâ¦³¤°»ò¯S§O
+		/// time space çœ‹èµ·ä¾†ä¸å¤ªç®—æœ‰ä»€éº¼ç‰¹åˆ¥
 		///
-		/// ¥t¤@­Ó¤H¼gªº¦P·§©À Sol 3 ¦ı¬O¦h·f°t¤@­Ó List  ´N«Ü³Ç¥X¤F
+		/// å¦ä¸€å€‹äººå¯«çš„åŒæ¦‚å¿µ Sol 3 ä½†æ˜¯å¤šæ­é…ä¸€å€‹ List  å°±å¾ˆå‚‘å‡ºäº†
 		///
-		/// ª½±µÆ[¹îÀ³¸Ó¥D­n®t¦b  Sol3 ªº getList index++ ­n³z¹L stack push pop ¶Ç»¼
+		/// ç›´æ¥è§€å¯Ÿæ‡‰è©²ä¸»è¦å·®åœ¨  Sol3 çš„ getList index++ è¦é€é stack push pop å‚³é
 		/// 
-		/// ª½±µ¥Î¤@­Ólist  ´Nª½±µ++  À³¸Ó´N®t¦b³o
+		/// ç›´æ¥ç”¨ä¸€å€‹list  å°±ç›´æ¥++  æ‡‰è©²å°±å·®åœ¨é€™
 		/// 
 		/// Runtime: 240 ms, faster than 40.35% of C# online submissions for Flatten Nested List Iterator.
 		/// Memory Usage: 33.6 MB, less than 11.11% of C# online submissions for Flatten Nested List Iterator.
@@ -229,26 +315,26 @@ namespace YangPracticeLeetCode.Solved
 
 
 		/// <summary>
-		/// ¨ä¥L¤H¼gªº  ³Ì§Ö¸Ñ  ¹ê´ú¤]®t¤£¦h  ¦³§Ö¦³ºC  °O¾ĞÅé¦³¤j¦³¤p
-		/// ¬İ°_¨Ó«Ü¯S§O  ³Ì¯S§O¬O  construct  ª½±µ®³nestedList  ¨S¦³¹w³B²zÅu¶}
-		/// ¬OHasNextªº®É­Ô¤~¤@Ãä°µ
-		/// ³]­p´N­n«D±`¥©§®
+		/// å…¶ä»–äººå¯«çš„  æœ€å¿«è§£  å¯¦æ¸¬ä¹Ÿå·®ä¸å¤š  æœ‰å¿«æœ‰æ…¢  è¨˜æ†¶é«”æœ‰å¤§æœ‰å°
+		/// çœ‹èµ·ä¾†å¾ˆç‰¹åˆ¥  æœ€ç‰¹åˆ¥æ˜¯  construct  ç›´æ¥æ‹¿nestedList  æ²’æœ‰é è™•ç†æ”¤é–‹
+		/// æ˜¯HasNextçš„æ™‚å€™æ‰ä¸€é‚Šåš
+		/// è¨­è¨ˆå°±è¦éå¸¸å·§å¦™
 		///
-		/// ¥D­nªº¦n³BÀ³¸Ó¬O¥i¥H¬Ù±¼¹w³B²zªº®É¶¡   ¦ı¬O¦bÅª¨ú®É³t«×¸ûºC
-		/// ¤£¹L³oÃä´ú¸Õ¸ê®Æ¤p  ©Ò¥H¬İ¤£¥X©úÅã¼vÅT
+		/// ä¸»è¦çš„å¥½è™•æ‡‰è©²æ˜¯å¯ä»¥çœæ‰é è™•ç†çš„æ™‚é–“   ä½†æ˜¯åœ¨è®€å–æ™‚é€Ÿåº¦è¼ƒæ…¢
+		/// ä¸éé€™é‚Šæ¸¬è©¦è³‡æ–™å°  æ‰€ä»¥çœ‹ä¸å‡ºæ˜é¡¯å½±éŸ¿
 		///
 		///  
-		/// «D±`¥©§®  ª½±µ¬İµ{¦¡½X¨S¿ìªk§¹¥ş¥şÀ´
-		/// ¶]¤F¤§«á¤~¬İ¥X´X­Ó·sªº¦a¤è:
-		/// listStack ¸ò idxStack ÀHµÛiterator¨ì¹Fªº¦a¤èªº¤º´O¼h¼Æ ¹ïÀ³¼W¥[  ¬İsol3 gif¬íÀ´
-		/// ¨Ï¥Î®É¾÷¦b©ó  ¹J¨ì¤¸¯À¬O list  («Dlist¬Oint´Nª½±µ¨úÄ~Äò«e¶i
-		/// ´N§â§¹¾ãlistªºcurrList ¥ıÂÃ¨ì listStack   §¹¾ãlistªºidx¤]¦¬¨ìidxStack
-		/// µM«á currList§ï¸Ë  ¥Ø«e§¹¾ãlist[idx]ªºList  idx³]©w¬°³o­Ó¤llistªº¶}ÀY 0
-		/// µM«á¤llist¤@ª½¶]  ¶]¨ìidx¶W¹L¤llist
-		/// ´N§â­ì¥»¦¬°_¨ÓªºlistStack©ñ¥X¨Ó Ä~Äò¤W­±ªº¹Lµ{
+		/// éå¸¸å·§å¦™  ç›´æ¥çœ‹ç¨‹å¼ç¢¼æ²’è¾¦æ³•å®Œå…¨å…¨æ‡‚
+		/// è·‘äº†ä¹‹å¾Œæ‰çœ‹å‡ºå¹¾å€‹æ–°çš„åœ°æ–¹:
+		/// listStack è·Ÿ idxStack éš¨è‘—iteratoråˆ°é”çš„åœ°æ–¹çš„å…§åµŒå±¤æ•¸ å°æ‡‰å¢åŠ   çœ‹sol3 gifç§’æ‡‚
+		/// ä½¿ç”¨æ™‚æ©Ÿåœ¨æ–¼  é‡åˆ°å…ƒç´ æ˜¯ list  (élistæ˜¯intå°±ç›´æ¥å–ç¹¼çºŒå‰é€²
+		/// å°±æŠŠå®Œæ•´listçš„currList å…ˆè—åˆ° listStack   å®Œæ•´listçš„idxä¹Ÿæ”¶åˆ°idxStack
+		/// ç„¶å¾Œ currListæ”¹è£  ç›®å‰å®Œæ•´list[idx]çš„List  idxè¨­å®šç‚ºé€™å€‹å­listçš„é–‹é ­ 0
+		/// ç„¶å¾Œå­listä¸€ç›´è·‘  è·‘åˆ°idxè¶…éå­list
+		/// å°±æŠŠåŸæœ¬æ”¶èµ·ä¾†çš„listStackæ”¾å‡ºä¾† ç¹¼çºŒä¸Šé¢çš„éç¨‹
 		///
-		/// ³o¤]¬O Sol3 ªº·Qªk   ¦ı¬O time space ´N«ÜÀu¨q
-		/// ©ú©ú´N¤@¼Ëªº°µªk   ¬°¦ó¯à¯S§O§Ö  ¬ã¨s¤@¤U
+		/// é€™ä¹Ÿæ˜¯ Sol3 çš„æƒ³æ³•   ä½†æ˜¯ time space å°±å¾ˆå„ªç§€
+		/// æ˜æ˜å°±ä¸€æ¨£çš„åšæ³•   ç‚ºä½•èƒ½ç‰¹åˆ¥å¿«  ç ”ç©¶ä¸€ä¸‹
 		/// Runtime: 224 ms, faster than 94.15% of C# online submissions for Flatten Nested List Iterator.
 		/// Memory Usage: 32.9 MB, less than 84.80% of C# online submissions for Flatten Nested List Iterator.
 		/// 
@@ -310,11 +396,7 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
-		//*
-		// * Your NestedIterator will be called like this:
-		// * NestedIterator i = new NestedIterator(nestedList);
-		// * while (i.HasNext()) v[f()] = i.Next();
-
+		
 
 
 
@@ -322,13 +404,63 @@ namespace YangPracticeLeetCode.Solved
 		/// Runtime: 232 ms, faster than 76.47% of C# online submissions for Flatten Nested List Iterator.
 		/// Memory Usage: 33.9 MB, less than 10.59% of C# online submissions for Flatten Nested List Iterator
 		///
-		/// ¹ê»Ú¤W¬O¦³ÂI¤p©_©Ç   ºâ«Ü§Ö  ¤ñ sol3 §Ö
-		/// ¥H¤å¦r¸ÑÄÀ¨Ó»¡  ·PÄ± sol3 ·|¤ñ sol2§Ö   ¤£¹L¤]¦³¤ÀªR­ì¦]µù¸Ñ¤F
+		/// å¯¦éš›ä¸Šæ˜¯æœ‰é»å°å¥‡æ€ª   ç®—å¾ˆå¿«  æ¯” sol3 å¿«
+		/// ä»¥æ–‡å­—è§£é‡‹ä¾†èªª  æ„Ÿè¦º sol3 æœƒæ¯” sol2å¿«   ä¸éä¹Ÿæœ‰åˆ†æåŸå› è¨»è§£äº†
 		///
-		/// ©Ò¥H¥H³oÃä¨Ó»¡  ls reverse«á  ¤@ª½ pop   ·|¤ñindex ¤@ª½ push pop §Ö
+		/// æ‰€ä»¥ä»¥é€™é‚Šä¾†èªª  ls reverseå¾Œ  ä¸€ç›´ pop   æœƒæ¯”index ä¸€ç›´ push pop å¿«
 		///
+		/// é—œéµæ¼”ç®—æ³• 
+		/// stack = a new Stack
+		/// push all items in nestedList onto stack, in reverse order
 		/// 
+		/// define function getNextInteger():
+		///     while stack is not empty:
+		///         nestedInteger = pop top off stack
+		///         if nestedInteger.isInteger():
+		///             RETURN nestedInteger.getInteger()
+		///         else:
+		///             list = nestedInteger.getList()
+		///             push all items in list onto stack, in reverse order
+		///
+		/// é€™å€‹stack å¦‚å½±ç‰‡  å¯èƒ½æœƒè£è¼‰å¤šå±¤
+		///
+		/// å¦å¤–æ­é…ä¸€å€‹  é‡åˆ°int ok  é‡åˆ° list è½‰æˆreverse push to stack çš„æ–¹æ³•  åœ¨ hasNextçš„æ™‚å€™å‘¼å«
+		/// makeStackTopAnInteger()
+		/// stack = a new Stack
+		/// push all items in nestedList onto stack, in reverse order
 		/// 
+		/// define function makeStackTopAnInteger():
+		///     while stack is not empty AND the nestedInteger at top of stack is a list:
+		///         nestedInteger = pop top off stack
+		///         list = nestedInteger.getList()
+		///         push all items in list onto stack, in reverse order
+		///
+		///
+		/// Time  Space
+		/// 
+		/// Constructor: O(N + L) 
+		/// The worst-case occurs when the initial input nestedList consists entirely of integers and empty lists (everything is in the top-level). In this case, every item is reversed and stored, giving a total time complexity of O(N + L).
+		/// 
+		/// makeStackTopAnInteger(): O(L/N) or O(1).
+		/// 
+		/// If the top of the stack is an integer, then this function does nothing; taking O(1) time.
+		/// 
+		/// Otherwise, it needs to process the stack until an integer is on top. The best way of analyzing the time complexity is to look at the total cost across all calls to makeStackTopAnInteger() and then divide by the number of calls made. Once the iterator is exhausted makeStackTopAnInteger() must have seen every integer at least once, costing O(N)O(N) time. Additionally, it has seen every list (except the first) on the stack at least once also, so this costs O(L) time. Adding these together, we get O(N + L) time.
+		/// 
+		/// The amortized time of a single makeStackTopAnInteger is the total cost, O(N + L), divided by the number of times it's called. In order to get all integers, we need to have called it N times. This gives us an amortized time complexity of O( (N + L)/N ) = O(L/N)  (å› ç‚ºL/L =1 å¯å¿½ç•¥) 
+		///
+		/// next(): O(L/N) or O(1).
+		/// 
+		/// All of this method is O(1), except for possibly the call to makeStackTopAnInteger(), giving us a time complexity the same as makeStackTopAnInteger().
+		/// 
+		/// hasNext(): O(L/N) or O(1).
+		/// 
+		/// All of this method is O(1), except for possibly the call to makeStackTopAnInteger(), giving us a time complexity the same as makeStackTopAnInteger().
+		/// 
+		/// Space complexity : O(N + L).
+		/// 
+		/// In the worst case, where the top list contains N integers, or L empty lists, it will cost O(N + L) space. Other expensive cases occur when the nesting is very deep. However, it's useful to remember that D â‰¤ L (because each layer of nesting requires another list), and so we don't need to take this into account.
+		///
 		/// </summary>
 		public class NestedIterator_Sol2
 		{
@@ -341,9 +473,9 @@ namespace YangPracticeLeetCode.Solved
 			{
 				// The constructor puts them on in the order we require. No need to reverse.
 
-				//³o¸Ì¦]¬°¬O java stack ¥ÎDeque  ©Ò¥H java new§¹ ¬O¶¶§Ç
-				//C# new §¹  ¦]¬°¥L¬Ofor push ·|ÅÜ°f§Ç
-				//©Ò¥H­n¥ı°f§Ç¦A¥á¶i¥h  ¹Lµ{¦A°f  ·|ÅÜ·|¶¶§Ç
+				//é€™è£¡å› ç‚ºæ˜¯ java stack ç”¨Deque  æ‰€ä»¥ java newå®Œ æ˜¯é †åº
+				//C# new å®Œ  å› ç‚ºä»–æ˜¯for push æœƒè®Šé€†åº
+				//æ‰€ä»¥è¦å…ˆé€†åºå†ä¸Ÿé€²å»  éç¨‹å†é€†  æœƒè®Šæœƒé †åº
 				stack = new Stack<NestedInteger>(nestedList.Reverse());
 			}
 
@@ -384,9 +516,9 @@ namespace YangPracticeLeetCode.Solved
 
 
 		/// <summary>
-		/// «Üª½Ä±  ¤@¯ë»¼°j  §ï¤F¨â¦¸ 
-		/// 1  ConstructList(nestedList[i].GetList())  ¼g¦¨ ConstructList(nestedList)  ¾É­PµL½a»¼°j
-		/// 2 <![CDATA[  HasNext index < vals.Count; ¼g¦¨   index < vals.Count - 1; ]]> 
+		/// å¾ˆç›´è¦º  ä¸€èˆ¬éè¿´  æ”¹äº†å…©æ¬¡ 
+		/// 1  ConstructList(nestedList[i].GetList())  å¯«æˆ ConstructList(nestedList)  å°è‡´ç„¡çª®éè¿´
+		/// 2 <![CDATA[  HasNext index < vals.Count; å¯«æˆ   index < vals.Count - 1; ]]> 
 		/// 
 		/// Runtime: 220 ms, faster than 97.60% of C# online submissions for Flatten Nested List Iterator.
 		///Memory Usage: 33.3 MB, less than 12.80% of C# online submissions for Flatten Nested List Iterator.
@@ -394,7 +526,7 @@ namespace YangPracticeLeetCode.Solved
 		/// Runtime: 220 ms, faster than 97.60% of C# online submissions for Flatten Nested List Iterator.
 		///Memory Usage: 33.3 MB, less than 12.80% of C# online submissions for Flatten Nested List Iterator.
 		///
-		/// µ²ªG³o­Ó´N¬O Sol 1  ¤£¹L¤£¬O¯u¥¿iteratorªº·§©À iterator
+		/// çµæœé€™å€‹å°±æ˜¯ Sol 1  ä¸éä¸æ˜¯çœŸæ­£iteratorçš„æ¦‚å¿µ iterator
 		///
 		/// https://leetcode.com/problems/peeking-iterator/solution/
 		/// If you've heard of Iterators, you might assume they're simply a way of iterating over indexed or finite data structures. 
@@ -425,7 +557,7 @@ namespace YangPracticeLeetCode.Solved
 		///
 		/// ]]>
 		///
-		/// Our final property is one that we couldn't even do by copying values into an Array¡Xhandling an infinite sequence. 
+		/// Our final property is one that we couldn't even do by copying values into an Arrayâ€”handling an infinite sequence. 
 		///
 		/// An Iterator only provides two methods:
 		/// 
@@ -441,7 +573,7 @@ namespace YangPracticeLeetCode.Solved
 		/// 
 		/// As shown above, with only two methods, we get a lot of benefit (e.g. infinite sequences) and increased performance (e.g. not expanding sequences like range into arrays). We also get a nice way of separating the underlying data structure from the code that uses it.
 		/// 
-		/// ­«­n   Time Space
+		/// é‡è¦   Time Space
 		///
 		/// Let N be the total number of integers within the nested list, L be the total number of lists within the nested list, and D be the maximum nesting depth (maximum number of lists inside each other).
 		/// 
@@ -509,12 +641,10 @@ namespace YangPracticeLeetCode.Solved
 			}
 		}
 
-		///
-		//  Your NestedIterator will be called like this:
-		//  NestedIterator i = new NestedIterator(nestedList);
-		//  while (i.HasNext()) v[f()] = i.Next();
-		// /
-
+		// !!!!!!!!!!!!
+		// Your NestedIterator will be called like this:
+		// NestedIterator i = new NestedIterator(nestedList);
+		// while (i.HasNext()) v[f()] = i.Next();
 
 	}
 }
