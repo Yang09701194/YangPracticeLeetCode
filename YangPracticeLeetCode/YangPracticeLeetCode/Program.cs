@@ -21,7 +21,11 @@ namespace YangPracticeLeetCode
 			//CommonHelper.FormatProblemName();
 			// when transfer answer  ProblemRecord.List();
 
-			_341_FlattenNestedListIterator.Test();
+			_146_LRUCache.Test();
+
+			//_340_LongestSubstringwithAtMostKDistinctCharacters.Test();
+			
+			//_341_FlattenNestedListIterator.Test();
 
 			//_344_ReverseString.Test();
 
