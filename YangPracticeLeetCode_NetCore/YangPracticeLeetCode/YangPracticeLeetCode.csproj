@@ -9,10 +9,4 @@
     <ProjectReference Include="..\..\..\DataStructure_Algorithm\DSAlgo\DSAlgo\DSAlgo.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="DSAlgo">
-      <HintPath>..\..\..\DataStructure_Algorithm\DSAlgo\DSAlgo\bin\Debug\netcoreapp2.1\DSAlgo.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
